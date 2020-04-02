@@ -22,9 +22,6 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 
 
-/**
- * Created by liangjiateng on 2017/4/21.
- */
 @Aspect
 @Component
 public class PermissionAspect {
@@ -34,9 +31,7 @@ public class PermissionAspect {
     @Autowired
     private RoleService roleService;
 
-    private User user;
-
-    @Pointcut("execution(public * edu.zygxy.web..*.*(..))&&!execution(public * edu.zygxy.web.AuthController.*(..)) ")
+    @Pointcut("execution(public * edu.zygxy.web..*.*(..))")
     public void checkRole() {
     }
 
@@ -45,7 +40,7 @@ public class PermissionAspect {
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = attributes.getRequest();
         HttpServletResponse response = attributes.getResponse();
-        user = authService.checkAuth(request);
+        User user = authService.checkAuth(request);
         if (user == null) {
             response.sendRedirect("/login");
         } else {

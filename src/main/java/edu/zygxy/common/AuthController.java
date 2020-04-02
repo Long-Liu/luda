@@ -1,4 +1,4 @@
-package edu.zygxy.web;
+package edu.zygxy.common;
 
 import edu.zygxy.pojo.JsonResponse;
 import edu.zygxy.pojo.User;
