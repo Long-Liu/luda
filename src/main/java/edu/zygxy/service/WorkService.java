@@ -6,9 +6,7 @@ import edu.zygxy.pojo.WorkCheck;
 
 import java.util.List;
 
-/**
- * Created by liangjiateng on 2017/5/3.
- */
+
 public interface WorkService {
 
     Holiday getHolidayById(long id);

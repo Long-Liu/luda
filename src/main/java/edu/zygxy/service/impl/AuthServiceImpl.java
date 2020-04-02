@@ -12,9 +12,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Created by liangjiateng on 2017/5/3.
- */
+
 @Service
 public class AuthServiceImpl implements AuthService {
 

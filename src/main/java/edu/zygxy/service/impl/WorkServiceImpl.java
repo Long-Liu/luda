@@ -18,9 +18,7 @@ import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.List;
 
-/**
- * Created by liangjiateng on 2017/5/3.
- */
+
 @Service
 public class WorkServiceImpl implements WorkService {
 

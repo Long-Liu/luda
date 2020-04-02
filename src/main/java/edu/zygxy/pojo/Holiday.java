@@ -2,9 +2,7 @@ package edu.zygxy.pojo;
 
 import java.sql.Timestamp;
 
-/**
- * Created by liangjiateng on 2017/5/3.
- */
+
 public class Holiday {
 
     private Long id;

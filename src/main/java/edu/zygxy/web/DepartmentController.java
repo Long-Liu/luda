@@ -14,9 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by liangjiateng on 2017/5/3.
- */
+
 @Controller
 public class DepartmentController {
 

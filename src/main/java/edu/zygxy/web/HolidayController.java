@@ -13,9 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
-/**
- * Created by liangjiateng on 2017/5/3.
- */
+
 @Controller
 public class HolidayController {
 

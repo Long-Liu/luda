@@ -2,9 +2,7 @@ package edu.zygxy.pojo;
 
 import java.sql.Time;
 
-/**
- * Created by liangjiateng on 2017/5/3.
- */
+
 public class Config {
 
     private Long id;
