@@ -46,7 +46,7 @@ public class DepartmentController {
         return "department_add";
     }
 
-    @Role({"1","2"})
+    @Role({"1", "2"})
     @RequestMapping(value = "/api/departments", method = RequestMethod.POST, produces = "application/json")
     @ResponseBody
     public JsonResponse insertDepartment(@RequestBody Department department) {
@@ -55,7 +55,7 @@ public class DepartmentController {
         return new JsonResponse(null);
     }
 
-    @Role({"1","2"})
+    @Role({"1", "2"})
     @RequestMapping(value = "/api/departments/{id}", method = RequestMethod.DELETE, produces = "application/json")
     @ResponseBody
     public JsonResponse deleteDepartment(@PathVariable long id) {

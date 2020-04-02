@@ -2,9 +2,7 @@ package edu.zygxy.pojo;
 
 import java.util.List;
 
-/**
- * Created by liangjiateng on 2017/4/19.
- */
+
 public class DepartmentVO {
 
     private Long id;

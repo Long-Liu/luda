@@ -3,33 +3,35 @@
 <head>
     <title>考勤管理系统</title>
     <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="stylesheet" href="./lib/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="./lib/css/bootstrap-responsive.min.css"/>
-    <link rel="stylesheet" href="./lib/css/matrix-login.css"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <link href="./lib/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="./lib/css/bootstrap-responsive.min.css" rel="stylesheet"/>
+    <link href="./lib/css/matrix-login.css" rel="stylesheet"/>
     <link href="./lib/css/font-awesome.css" rel="stylesheet"/>
 </head>
 <body>
 <div id="loginbox">
-    <form id="loginform" class="form-vertical" action="/login" method="post">
-        <div class="control-group normal_text"> <h3>考勤管理系统</h3></div>
+    <form action="/login" class="form-vertical" id="loginform" method="post">
+        <div class="control-group normal_text"><h3>考勤管理系统</h3></div>
         <div class="control-group">
             <div class="controls">
                 <div class="main_input_box">
-                    <span class="add-on bg_lg"><i class="icon-user"></i></span><input id="username" type="text" placeholder="Email"/>
+                    <span class="add-on bg_lg"><i class="icon-user"></i></span><input id="username" placeholder="Email"
+                                                                                      type="text"/>
                 </div>
             </div>
         </div>
         <div class="control-group">
             <div class="controls">
                 <div class="main_input_box">
-                    <span class="add-on bg_ly"><i class="icon-lock"></i></span><input id="password" type="password" placeholder="密码"/>
+                    <span class="add-on bg_ly"><i class="icon-lock"></i></span><input id="password" placeholder="密码"
+                                                                                      type="password"/>
                 </div>
             </div>
         </div>
     </form>
     <div class="form-actions">
-        <span class="pull-right"><a onclick="login()" style="cursor: pointer" class="btn btn-success">登录</a></span>
+        <span class="pull-right"><a class="btn btn-success" onclick="login()" style="cursor: pointer">登录</a></span>
     </div>
 </div>
 

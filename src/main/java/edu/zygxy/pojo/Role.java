@@ -2,9 +2,7 @@ package edu.zygxy.pojo;
 
 import java.sql.Timestamp;
 
-/**
- * Created by liangjiateng on 2017/4/18.
- */
+
 public class Role {
 
     private Long id;

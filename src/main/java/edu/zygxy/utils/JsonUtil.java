@@ -4,14 +4,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-
 import java.io.IOException;
 import java.util.List;
 
-/**
- * json工具
- * Created by czm on 2017/1/18.
- */
 
 public class JsonUtil {
 
@@ -30,11 +25,11 @@ public class JsonUtil {
         return list;
     }
 
-    public static <T> String list2Str(List<T> list , Class<?> cla) throws JsonProcessingException {
+    public static <T> String list2Str(List<T> list, Class<?> cla) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
         JavaType javaType = objectMapper.getTypeFactory().constructCollectionType(List.class, cla);
         String res = objectMapper.writeValueAsString(list);
-        return res ;
+        return res;
     }
 
     /**
@@ -61,8 +56,8 @@ public class JsonUtil {
      */
     public static <T> String bean2String(T bean) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
-        String res =objectMapper.writeValueAsString(bean);
-        return res ;
+        String res = objectMapper.writeValueAsString(bean);
+        return res;
     }
 
 }

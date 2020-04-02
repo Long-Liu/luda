@@ -1,8 +1,4 @@
 /**
- * Created by liangjiateng on 2017/5/2.
- */
-
-/**
  * header
  */
 //标题栏
@@ -66,20 +62,20 @@ Vue.component('l-drop-menu-divider', {
 Vue.component('l-drop-menu-btn', {
     props: ['id', 'icon', 'title'],
     template: '<li class="dropdown" v-bind:id="id">' +
-    '<a href="#" data-toggle="dropdown" v-bind:data-target="id" class="dropdown-toggle">' +
-    '<i v-bind:class="icon" style="margin-right: 5px"></i><span class="text">{{title}}</span><b class="caret"></b>' +
-    '</a> ' +
-    '<ul class="dropdown-menu"><slot></slot></ul>' +
-    '</li>'
+        '<a href="#" data-toggle="dropdown" v-bind:data-target="id" class="dropdown-toggle">' +
+        '<i v-bind:class="icon" style="margin-right: 5px"></i><span class="text">{{title}}</span><b class="caret"></b>' +
+        '</a> ' +
+        '<ul class="dropdown-menu"><slot></slot></ul>' +
+        '</li>'
 })
 //普通菜单按钮
 Vue.component('l-menu-btn', {
     props: ['id', 'icon', 'title', 'href'],
     template: '<li v-bind:id="id">' +
-    '<a href="href">' +
-    '<i v-bind:class="icon" style="margin-right: 5px"></i><span class="text">{{title}}</span>' +
-    '</a> ' +
-    '</li>'
+        '<a href="href">' +
+        '<i v-bind:class="icon" style="margin-right: 5px"></i><span class="text">{{title}}</span>' +
+        '</a> ' +
+        '</li>'
 })
 //导航栏
 Vue.component('l-navigator', {
@@ -190,10 +186,10 @@ Vue.component('l-accordion-container', {
         this.href = '#' + this.id;
     },
     template: '<div class="accordion-group widget-box">' +
-    '<div class="accordion-heading">' +
-    '<div class="widget-title"><a data-parent="#collapse-group" v-bind:href="href" data-toggle="collapse"><span class="icon"><i v-bind:class="icon"></i></span><h5>{{title}}</h5></a></div></div>' +
-    '<div class="collapse in accordion-body" v-bind:id="id"><slot></slot></div>' +
-    '</div>'
+        '<div class="accordion-heading">' +
+        '<div class="widget-title"><a data-parent="#collapse-group" v-bind:href="href" data-toggle="collapse"><span class="icon"><i v-bind:class="icon"></i></span><h5>{{title}}</h5></a></div></div>' +
+        '<div class="collapse in accordion-body" v-bind:id="id"><slot></slot></div>' +
+        '</div>'
 })
 
 Vue.component('l-widget-container', {
@@ -206,10 +202,10 @@ Vue.component('l-widget-container', {
  */
 Vue.component('l-tab-container', {
     template: ' <div class="widget-box">' +
-    '<div class="widget-title">' +
-    '<ul class="nav nav-tabs"><slot name="nav"></slot></ul>' +
-    '</div>' +
-    '<div class="widget-content tab-content"><slot name="content"></slot></div>'
+        '<div class="widget-title">' +
+        '<ul class="nav nav-tabs"><slot name="nav"></slot></ul>' +
+        '</div>' +
+        '<div class="widget-content tab-content"><slot name="content"></slot></div>'
 })
 Vue.component('l-tab-nav', {
     props: ['isactive', 'title', 'href'],
@@ -248,7 +244,7 @@ Vue.component('l-form-custom', {
     template: '<div class="control-group"><label class="control-label">{{title}}</label><div class="controls"><slot></slot></div></div>'
 })
 Vue.component('l-form-input', {
-    props: ['title', 'placeholder', 'id', 'type', 'size','value'],
+    props: ['title', 'placeholder', 'id', 'type', 'size', 'value'],
     data: function () {
         return {
             data_size: ''

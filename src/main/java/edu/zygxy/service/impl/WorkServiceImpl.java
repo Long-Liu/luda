@@ -6,16 +6,13 @@ import edu.zygxy.dao.ScheduleMapper;
 import edu.zygxy.dao.WorkCheckMapper;
 import edu.zygxy.pojo.Config;
 import edu.zygxy.pojo.Holiday;
-import edu.zygxy.pojo.Schedule;
 import edu.zygxy.pojo.WorkCheck;
 import edu.zygxy.service.WorkService;
 import edu.zygxy.utils.DateUtil;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.Time;
-import java.sql.Timestamp;
 import java.util.List;
 
 

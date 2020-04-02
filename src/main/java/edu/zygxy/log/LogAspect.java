@@ -1,7 +1,6 @@
 package edu.zygxy.log;
 
 
-
 import org.apache.log4j.Logger;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.*;
@@ -13,9 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Arrays;
 
 
-/**
- * Created by liangjiateng on 2017/4/10.
- */
 @Aspect
 @Component
 public class LogAspect {

@@ -3,18 +3,18 @@
 <head>
     <title>考勤管理系统</title>
     <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="stylesheet" href="../lib/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="../lib/css/matrix-style.css"/>
-    <link rel="stylesheet" href="../lib/css/matrix-media.css"/>
-    <link rel="stylesheet" href="../lib/css/font-awesome.css"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <link href="../lib/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="../lib/css/matrix-style.css" rel="stylesheet"/>
+    <link href="../lib/css/matrix-media.css" rel="stylesheet"/>
+    <link href="../lib/css/font-awesome.css" rel="stylesheet"/>
 </head>
 <body>
 
 <div id="l-app">
     <l-brand></l-brand>
     <l-navigator>
-        <l-drop-menu-btn id="userInfo" title="欢迎您" icon="icon icon-user">
+        <l-drop-menu-btn icon="icon icon-user" id="userInfo" title="欢迎您">
             <l-drop-menu-item href="/login" icon="icon icon-reply" title="注销"></l-drop-menu-item>
         </l-drop-menu-btn>
     </l-navigator>
@@ -30,31 +30,31 @@
     </l-sidebar>
 
     <l-content>
-        <l-router slot="router" href="/index" title="首页" iscurrent="false"></l-router>
-        <l-router slot="router" href="/employee" title="员工管理"></l-router>
-        <l-router slot="router" href="#" title="修改员工信息" iscurrent="true"></l-router>
+        <l-router href="/index" iscurrent="false" slot="router" title="首页"></l-router>
+        <l-router href="/employee" slot="router" title="员工管理"></l-router>
+        <l-router href="#" iscurrent="true" slot="router" title="修改员工信息"></l-router>
         <l-container>
-            <l-widget-container title="修改员工信息" icon="icon icon-edit">
+            <l-widget-container icon="icon icon-edit" title="修改员工信息">
                 <l-form>
-                    <l-form-input id="name" type="text" size="10" title="姓名" th:value="${user.name}"></l-form-input>
-                    <l-form-input id="email" type="email" size="10" title="邮箱" th:value="${user.email}"></l-form-input>
-                    <l-form-input id="phone" type="number" size="10" title="手机" th:value="${user.phone}"></l-form-input>
-                    <l-form-input id="password1" type="password" size="10" title="密码"></l-form-input>
-                    <l-form-input id="password2" type="password" size="10" title="再次输入密码"></l-form-input>
+                    <l-form-input id="name" size="10" th:value="${user.name}" title="姓名" type="text"></l-form-input>
+                    <l-form-input id="email" size="10" th:value="${user.email}" title="邮箱" type="email"></l-form-input>
+                    <l-form-input id="phone" size="10" th:value="${user.phone}" title="手机" type="number"></l-form-input>
+                    <l-form-input id="password1" size="10" title="密码" type="password"></l-form-input>
+                    <l-form-input id="password2" size="10" title="再次输入密码" type="password"></l-form-input>
                     <l-form-custom title="部门">
                         <select id="department">
-                            <option th:each="department:${departments}" th:value="${department.id}"
-                                    th:text="${department.name}"></option>
+                            <option th:each="department:${departments}" th:text="${department.name}"
+                                    th:value="${department.id}"></option>
                         </select>
                     </l-form-custom>
                     <l-form-custom title="职务">
                         <select id="role">
-                            <option th:each="role:${roles}" th:value="${role.id}" th:text="${role.name}"></option>
+                            <option th:each="role:${roles}" th:text="${role.name}" th:value="${role.id}"></option>
                         </select>
                     </l-form-custom>
                 </l-form>
                 <l-form-btn-container>
-                    <button th:onclick="${'updateUser('+user.id+')'}" class="btn btn-success">更新员工信息</button>
+                    <button class="btn btn-success" th:onclick="${'updateUser('+user.id+')'}">更新员工信息</button>
                 </l-form-btn-container>
             </l-widget-container>
         </l-container>
@@ -74,6 +74,7 @@
     new Vue({
         el: '#l-app'
     })
+
     function updateUser(id) {
         var json = {};
         if ($("#password1").val() != $("#password2").val()) {
@@ -83,12 +84,12 @@
             json.email = $("#email").val();
             json.phone = $("#phone").val();
             json.password = $("#password1").val();
-            json.departmentId =$("#department").val();
+            json.departmentId = $("#department").val();
             json.roleId = $("#role").val();
             $.ajax({
                 type: "PUT",
                 contentType: "application/json",
-                url: "/api/users/"+id,
+                url: "/api/users/" + id,
                 data: JSON.stringify(json),
                 dataType: "json",
                 success: function (result) {

@@ -5,9 +5,7 @@ import edu.zygxy.service.SystemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-/**
- * Created by liangjiateng on 2017/5/8.
- */
+
 @Service
 public class SystemServiceImpl implements SystemService {
 

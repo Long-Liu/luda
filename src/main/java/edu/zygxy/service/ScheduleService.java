@@ -4,9 +4,7 @@ import edu.zygxy.pojo.Schedule;
 
 import java.util.List;
 
-/**
- * Created by liangjiateng on 2017/5/4.
- */
+
 public interface ScheduleService {
 
     void insertLeave(Schedule schedule);

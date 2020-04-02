@@ -1,9 +1,6 @@
 package edu.zygxy.pojo;
 
 
-/**
- * Created by liangjiateng on 2017/4/10.
- */
 public class JsonResponse {
 
     private Integer code;

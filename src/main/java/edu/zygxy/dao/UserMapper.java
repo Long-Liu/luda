@@ -6,9 +6,7 @@ import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
-/**
- * Created by liangjiateng on 2017/4/17.
- */
+
 @Mapper
 public interface UserMapper {
 

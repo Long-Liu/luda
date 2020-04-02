@@ -4,9 +4,7 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.Date;
 
-/**
- * Created by liangjiateng on 2017/4/10.
- */
+
 public class BaseException extends Exception {
 
     private Integer code;

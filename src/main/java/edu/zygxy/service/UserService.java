@@ -4,9 +4,7 @@ import edu.zygxy.pojo.User;
 
 import java.util.List;
 
-/**
- * Created by liangjiateng on 2017/5/2.
- */
+
 public interface UserService {
 
     long countUserByDepartmentId(long id);
@@ -17,7 +15,7 @@ public interface UserService {
 
     List<User> listUsersByDepartmentId(long departmentId);
 
-    List<String> listUserNamesByRoleIdAndDepartmentId(long roleId,long departmentId);
+    List<String> listUserNamesByRoleIdAndDepartmentId(long roleId, long departmentId);
 
     void insertUser(User user) throws Exception;
 

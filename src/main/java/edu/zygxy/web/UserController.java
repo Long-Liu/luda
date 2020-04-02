@@ -1,8 +1,6 @@
 package edu.zygxy.web;
 
-import edu.zygxy.permission.*;
 import edu.zygxy.pojo.*;
-import edu.zygxy.pojo.Role;
 import edu.zygxy.service.DepartmentService;
 import edu.zygxy.service.RoleService;
 import edu.zygxy.service.UserService;
@@ -14,9 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by liangjiateng on 2017/5/2.
- */
+
 @Controller
 public class UserController {
 
@@ -77,14 +73,16 @@ public class UserController {
         modelMap.addAttribute("user", user);
         return "employee_update";
     }
-    @edu.zygxy.permission.Role({"1","2","3"})
+
+    @edu.zygxy.permission.Role({"1", "2", "3"})
     @RequestMapping(value = "/api/users", method = RequestMethod.POST, produces = "application/json")
     @ResponseBody
     public JsonResponse insertUser(@RequestBody User user) throws Exception {
         userService.insertUser(user);
         return new JsonResponse(null);
     }
-    @edu.zygxy.permission.Role({"1","2","3"})
+
+    @edu.zygxy.permission.Role({"1", "2", "3"})
     @RequestMapping(value = "/api/users/{id}", method = RequestMethod.PUT, produces = "application/json")
     @ResponseBody
     public JsonResponse updateUser(@PathVariable long id, @RequestBody User user) throws Exception {
@@ -92,7 +90,8 @@ public class UserController {
         userService.updateUser(user);
         return new JsonResponse(null);
     }
-    @edu.zygxy.permission.Role({"1","2","3"})
+
+    @edu.zygxy.permission.Role({"1", "2", "3"})
     @RequestMapping(value = "/api/users/{id}", method = RequestMethod.DELETE, produces = "application/json")
     @ResponseBody
     public JsonResponse deleteUser(@PathVariable long id) throws Exception {

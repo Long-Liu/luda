@@ -1,6 +1,5 @@
 package edu.zygxy.web;
 
-import edu.zygxy.permission.*;
 import edu.zygxy.permission.Role;
 import edu.zygxy.pojo.*;
 import edu.zygxy.service.WorkService;
@@ -67,7 +66,8 @@ public class HolidayController {
 
         return "work";
     }
-    @Role({"1","2","3","4"})
+
+    @Role({"1", "2", "3", "4"})
     @RequestMapping(value = "/api/work_checks/start", method = RequestMethod.POST, produces = "application/json")
     @ResponseBody
     public JsonResponse startWork(HttpServletRequest request) {
@@ -81,7 +81,8 @@ public class HolidayController {
         }
         return new JsonResponse(404, "今天已经打过卡");
     }
-    @Role({"1","2","3","4"})
+
+    @Role({"1", "2", "3", "4"})
     @RequestMapping(value = "/api/work_checks/end", method = RequestMethod.POST, produces = "application/json")
     @ResponseBody
     public JsonResponse endWork(HttpServletRequest request) {
@@ -102,6 +103,7 @@ public class HolidayController {
         workService.insertHoliday(holiday);
         return new JsonResponse(null);
     }
+
     @Role({"1"})
     @RequestMapping(value = "/api/config", method = RequestMethod.POST, produces = "application/json")
     @ResponseBody

@@ -1,11 +1,15 @@
 package edu.zygxy.permission;
 
 import edu.zygxy.exception.PermissionException;
-import edu.zygxy.pojo.*;
+import edu.zygxy.pojo.JsonResponse;
+import edu.zygxy.pojo.User;
+import edu.zygxy.pojo.UserVO;
 import edu.zygxy.service.AuthService;
 import edu.zygxy.service.RoleService;
 import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.annotation.*;
+import org.aspectj.lang.annotation.Around;
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -44,7 +48,7 @@ public class PermissionAspect {
         user = authService.checkAuth(request);
         if (user == null) {
             response.sendRedirect("/login");
-        }else{
+        } else {
             UserVO userVO = new UserVO();
             userVO.setId(user.getId());
             userVO.setName(user.getName());
@@ -68,8 +72,8 @@ public class PermissionAspect {
                         }
                     }
                     if (i == 0) {
-                        PermissionException permissionException=new PermissionException();
-                        return new JsonResponse(permissionException.getCode(),permissionException.getMsg());
+                        PermissionException permissionException = new PermissionException();
+                        return new JsonResponse(permissionException.getCode(), permissionException.getMsg());
                     }
                 }
             }

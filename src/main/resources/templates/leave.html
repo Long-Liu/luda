@@ -1,22 +1,22 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <title>考勤管理系统</title>
     <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="stylesheet" href="lib/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="lib/css/matrix-style.css"/>
-    <link rel="stylesheet" href="lib/css/matrix-media.css"/>
-    <link rel="stylesheet" href="lib/css/font-awesome.css"/>
-    <link rel="stylesheet" href="lib/css/datepicker.css"/>
-    <link rel="stylesheet" href="lib/css/uniform.css"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <link href="lib/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="lib/css/matrix-style.css" rel="stylesheet"/>
+    <link href="lib/css/matrix-media.css" rel="stylesheet"/>
+    <link href="lib/css/font-awesome.css" rel="stylesheet"/>
+    <link href="lib/css/datepicker.css" rel="stylesheet"/>
+    <link href="lib/css/uniform.css" rel="stylesheet"/>
 </head>
 <body>
 
 <div id="l-app">
     <l-brand></l-brand>
     <l-navigator>
-        <l-drop-menu-btn id="userInfo" title="欢迎您" icon="icon icon-user">
+        <l-drop-menu-btn icon="icon icon-user" id="userInfo" title="欢迎您">
             <l-drop-menu-item href="/login" icon="icon icon-reply" title="注销"></l-drop-menu-item>
         </l-drop-menu-btn>
     </l-navigator>
@@ -32,18 +32,18 @@
     </l-sidebar>
 
     <l-content>
-        <l-router slot="router" href="/index" title="首页" iscurrent="false"></l-router>
-        <l-router slot="router" href="#" title="出差管理" iscurrent="true"></l-router>
+        <l-router href="/index" iscurrent="false" slot="router" title="首页"></l-router>
+        <l-router href="#" iscurrent="true" slot="router" title="出差管理"></l-router>
         <l-container>
             <l-tab-container>
-                <l-tab-nav title="请假记录" isactive="true" href="#tab1" slot="nav"></l-tab-nav>
-                <l-tab-nav title="请假申请" href="#tab2" slot="nav"></l-tab-nav>
+                <l-tab-nav href="#tab1" isactive="true" slot="nav" title="请假记录"></l-tab-nav>
+                <l-tab-nav href="#tab2" slot="nav" title="请假申请"></l-tab-nav>
                 <l-tab-content id="tab1" isactive="true" slot="content">
                     <l-widget-container icon="icon icon-th" title="请假记录">
                         <table class="table table-bordered data-table">
                             <thead>
                             <tr>
-                                <th><input type="checkbox" id="title-table-checkbox" name="title-table-checkbox"/></th>
+                                <th><input id="title-table-checkbox" name="title-table-checkbox" type="checkbox"/></th>
                                 <th>请假原因</th>
                                 <th>开始时间</th>
                                 <th>结束时间</th>
@@ -58,11 +58,11 @@
                                 <td th:text="${leave.startStr}">2017-05-11 09：00</td>
                                 <td th:text="${leave.endStr}">2017-05-11 09：00</td>
                                 <td th:text="${leave.statusStr}">已批准</td>
-                                <td class="center"><a th:onclick="${'accept('+leave.id+')'}"
-                                                      style="margin-left: 10px;cursor:pointer">批准</a><a
-                                        th:onclick="${'reject('+leave.id+')'}" style="margin-left: 10px;cursor:pointer">不批准</a><a
-                                        th:onclick="${'delete1('+leave.id+')'}"
-                                        style="margin-left: 10px;cursor:pointer">删除申请</a></td>
+                                <td class="center"><a style="margin-left: 10px;cursor:pointer"
+                                                      th:onclick="${'accept('+leave.id+')'}">批准</a><a
+                                        style="margin-left: 10px;cursor:pointer" th:onclick="${'reject('+leave.id+')'}">不批准</a><a
+                                        style="margin-left: 10px;cursor:pointer"
+                                        th:onclick="${'delete1('+leave.id+')'}">删除申请</a></td>
                             </tr>
                             </tbody>
                         </table>
@@ -73,18 +73,18 @@
                     <l-widget-container icon="icon icon-cog" title="请假申请">
                         <l-form>
                             <l-form-custom title="开始日期">
-                                <input id="date1" type="text" data-date-format="yyyy-mm-dd" class="datepicker span6"/>
+                                <input class="datepicker span6" data-date-format="yyyy-mm-dd" id="date1" type="text"/>
                             </l-form-custom>
                             <l-form-custom title="结束日期">
-                                <input id="date2" type="text" data-date-format="yyyy-mm-dd" class="datepicker span6"/>
+                                <input class="datepicker span6" data-date-format="yyyy-mm-dd" id="date2" type="text"/>
                             </l-form-custom>
-                            <l-form-input title="请假原因" size="10" type="text" id="reason">
+                            <l-form-input id="reason" size="10" title="请假原因" type="text">
 
                             </l-form-input>
                         </l-form>
 
                         <l-form-btn-container>
-                            <button onclick="add()" class="btn btn-success">提交申请</button>
+                            <button class="btn btn-success" onclick="add()">提交申请</button>
                         </l-form-btn-container>
 
                     </l-widget-container>
@@ -123,7 +123,7 @@
         var end = new Date(endDate).getTime();
         if ($("#date1").val() == '' || $("#date2").val() == '' || $("#reason") == '') {
             alert("输入不能为空");
-        }else if(start>end){
+        } else if (start > end) {
             alert("日期输入错误")
         } else {
             json.start = start;

@@ -2,7 +2,6 @@ package edu.zygxy.web;
 
 import edu.zygxy.pojo.Schedule;
 import edu.zygxy.pojo.User;
-import edu.zygxy.pojo.UserVO;
 import edu.zygxy.pojo.WorkCheck;
 import edu.zygxy.service.ScheduleService;
 import edu.zygxy.service.UserService;
@@ -16,9 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
-/**
- * Created by liangjiateng on 2017/5/5.
- */
+
 @Controller
 public class StatController {
 
@@ -68,7 +65,7 @@ public class StatController {
                 schedule.setStatusStr("已批准");
             }
             if (userService.getUserById(schedule.getUserId()) != null)
-            schedule.setName(userService.getUserById(schedule.getUserId()).getName());
+                schedule.setName(userService.getUserById(schedule.getUserId()).getName());
             schedule.setStartStr(DateUtil.longToString(schedule.getStart().getTime()));
             schedule.setEndStr(DateUtil.longToString(schedule.getEnd().getTime()));
         }
@@ -86,7 +83,7 @@ public class StatController {
             schedule.setStartStr(DateUtil.longToString(schedule.getStart().getTime()));
             schedule.setEndStr(DateUtil.longToString(schedule.getEnd().getTime()));
             if (userService.getUserById(schedule.getUserId()) != null)
-            schedule.setName(userService.getUserById(schedule.getUserId()).getName());
+                schedule.setName(userService.getUserById(schedule.getUserId()).getName());
         }
         modelMap.addAttribute("buzzs", buzzs);
 

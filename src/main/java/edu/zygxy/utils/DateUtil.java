@@ -7,13 +7,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
-/**
- * Created with IntelliJ IDEA.
- * User: Administrator
- * Date: 15-3-3
- * Time: 下午5:13
- * To change this template use File | Settings | File Templates.
- */
+
 public class DateUtil {
 
     /**
@@ -83,11 +77,11 @@ public class DateUtil {
         String dateStr = dateFormat.format(date).toString();
         return dateStr;
     }
+
     public static String longToString2(long time) {
         Date date = new Date(time);
         return dateToString2(date);
     }
-
 
 
     /**

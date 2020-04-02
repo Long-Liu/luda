@@ -1,21 +1,21 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <title>考勤管理系统</title>
     <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="stylesheet" href="lib/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="lib/css/matrix-style.css"/>
-    <link rel="stylesheet" href="lib/css/matrix-media.css"/>
-    <link rel="stylesheet" href="lib/css/font-awesome.css"/>
-    <link rel="stylesheet" href="lib/css/uniform.css"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <link href="lib/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="lib/css/matrix-style.css" rel="stylesheet"/>
+    <link href="lib/css/matrix-media.css" rel="stylesheet"/>
+    <link href="lib/css/font-awesome.css" rel="stylesheet"/>
+    <link href="lib/css/uniform.css" rel="stylesheet"/>
 </head>
 <body>
 
 <div id="l-app">
     <l-brand></l-brand>
     <l-navigator>
-        <l-drop-menu-btn id="userInfo" title="欢迎您" icon="icon icon-user">
+        <l-drop-menu-btn icon="icon icon-user" id="userInfo" title="欢迎您">
             <l-drop-menu-item href="/login" icon="icon icon-reply" title="注销"></l-drop-menu-item>
         </l-drop-menu-btn>
     </l-navigator>
@@ -31,10 +31,10 @@
     </l-sidebar>
 
     <l-content>
-        <l-router slot="router" href="/index" title="首页" iscurrent="false"></l-router>
-        <l-router slot="router" href="/system" title="系统设置" iscurrent="true"></l-router>
+        <l-router href="/index" iscurrent="false" slot="router" title="首页"></l-router>
+        <l-router href="/system" iscurrent="true" slot="router" title="系统设置"></l-router>
         <l-container>
-            <l-widget-container title="系统设置" icon="icon icon-calendar">
+            <l-widget-container icon="icon icon-calendar" title="系统设置">
 
                 <l-container>
                     <l-notification color="red" title="系统初始化后，会保留一个超级管理员账号，用户名123456@qq.com，密码123456"></l-notification>
@@ -62,12 +62,13 @@
     new Vue({
         el: '#l-app'
     })
+
     function initialization() {
         if (confirm("确定要初始化系统吗？")) {
             $.ajax({
                 type: "POST",
                 contentType: "application/json",
-                url: "/api/init" ,
+                url: "/api/init",
                 success: function (result) {
                     var obj = eval(result);
                 }
@@ -75,8 +76,9 @@
         }
         location.href = "/login";
     }
+
     function backup() {
-        
+
     }
 </script>
 </body>

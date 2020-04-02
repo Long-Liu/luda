@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <title>考勤管理系统</title>
     <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="stylesheet" href="lib/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="lib/css/matrix-style.css"/>
-    <link rel="stylesheet" href="lib/css/matrix-media.css"/>
-    <link rel="stylesheet" href="lib/css/font-awesome.css"/>
-    <link rel="stylesheet" href="lib/css/uniform.css"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <link href="lib/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="lib/css/matrix-style.css" rel="stylesheet"/>
+    <link href="lib/css/matrix-media.css" rel="stylesheet"/>
+    <link href="lib/css/font-awesome.css" rel="stylesheet"/>
+    <link href="lib/css/uniform.css" rel="stylesheet"/>
 </head>
 <body>
 
@@ -16,7 +16,7 @@
 
     <l-brand></l-brand>
     <l-navigator>
-        <l-drop-menu-btn id="userInfo" title="欢迎您" icon="icon icon-user">
+        <l-drop-menu-btn icon="icon icon-user" id="userInfo" title="欢迎您">
             <l-drop-menu-item href="/login" icon="icon icon-reply" title="注销"></l-drop-menu-item>
         </l-drop-menu-btn>
     </l-navigator>
@@ -32,20 +32,20 @@
     </l-sidebar>
 
     <l-content>
-        <l-router slot="router" href="/index" title="首页" iscurrent="false"></l-router>
-        <l-router slot="router" href="/department" title="部门管理" iscurrent="true"></l-router>
+        <l-router href="/index" iscurrent="false" slot="router" title="首页"></l-router>
+        <l-router href="/department" iscurrent="true" slot="router" title="部门管理"></l-router>
 
         <l-container>
 
             <l-quick-action>
-                <l-quick-btn href="/department/add" title="添加部门" icon="icon icon-plus" color="blue"></l-quick-btn>
+                <l-quick-btn color="blue" href="/department/add" icon="icon icon-plus" title="添加部门"></l-quick-btn>
             </l-quick-action>
 
             <l-widget-container icon="icon icon-th" title="部门列表">
                 <table class="table table-bordered data-table">
                     <thead>
                     <tr>
-                        <th><input type="checkbox" id="title-table-checkbox" name="title-table-checkbox" /></th>
+                        <th><input id="title-table-checkbox" name="title-table-checkbox" type="checkbox"/></th>
                         <th>部门号</th>
                         <th>部门名称</th>
                         <th>部门描述</th>
@@ -62,7 +62,8 @@
                         <td th:text="${department.workDesc}"></td>
                         <td th:text="${department.employeeNum}"></td>
                         <td th:text="${department.leaders}"></td>
-                        <td class="center" ><a th:onclick="${'deleteDepartment('+department.id+')'}" style="margin-left: 10px;cursor:pointer">删除部门</a></td>
+                        <td class="center"><a style="margin-left: 10px;cursor:pointer"
+                                              th:onclick="${'deleteDepartment('+department.id+')'}">删除部门</a></td>
                     </tr>
                     </tbody>
                 </table>
@@ -85,6 +86,7 @@
     new Vue({
         el: '#l-app'
     })
+
     function deleteDepartment(id) {
 
         if (confirm("确定要删除部门吗？")) {
@@ -97,7 +99,7 @@
                     if (obj.code == 200) {
                         alert("删除成功!");
                         location.reload();
-                    }else{
+                    } else {
                         alert(obj.message);
                     }
                 }

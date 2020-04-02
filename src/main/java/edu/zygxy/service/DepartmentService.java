@@ -4,9 +4,7 @@ import edu.zygxy.pojo.Department;
 
 import java.util.List;
 
-/**
- * Created by liangjiateng on 2017/5/2.
- */
+
 public interface DepartmentService {
 
     Department getDepartmentById(long id);

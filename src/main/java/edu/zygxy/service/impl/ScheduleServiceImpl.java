@@ -8,9 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-/**
- * Created by liangjiateng on 2017/5/4.
- */
+
 @Service
 public class ScheduleServiceImpl implements ScheduleService {
 
@@ -40,7 +38,7 @@ public class ScheduleServiceImpl implements ScheduleService {
 
     @Override
     public List<Schedule> listLeaves(long userId) {
-        return scheduleMapper.listSchedulesByUserIdAndType(userId,0);
+        return scheduleMapper.listSchedulesByUserIdAndType(userId, 0);
     }
 
     @Override
@@ -50,7 +48,7 @@ public class ScheduleServiceImpl implements ScheduleService {
 
     @Override
     public List<Schedule> listBuzzs(long userId) {
-        return scheduleMapper.listSchedulesByUserIdAndType(userId,1);
+        return scheduleMapper.listSchedulesByUserIdAndType(userId, 1);
     }
 
     @Override
@@ -60,11 +58,11 @@ public class ScheduleServiceImpl implements ScheduleService {
 
     @Override
     public void acceptSchedule(long id) {
-        scheduleMapper.updateScheduleStatus(id,1);
+        scheduleMapper.updateScheduleStatus(id, 1);
     }
 
     @Override
     public void rejectSchedule(long id) {
-        scheduleMapper.updateScheduleStatus(id,-1);
+        scheduleMapper.updateScheduleStatus(id, -1);
     }
 }

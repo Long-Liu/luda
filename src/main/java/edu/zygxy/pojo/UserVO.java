@@ -1,8 +1,6 @@
 package edu.zygxy.pojo;
 
-/**
- * Created by liangjiateng on 2017/4/17.
- */
+
 public class UserVO {
 
     private Long id;

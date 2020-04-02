@@ -14,44 +14,46 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
-/**
- * Created by liangjiateng on 2017/5/4.
- */
+
 @Controller
 public class ScheduleController {
 
     @Autowired
     private ScheduleService scheduleService;
 
-    @Role({"1","2","3","4"})
+    @Role({"1", "2", "3", "4"})
     @RequestMapping(value = "/api/schedules/leave", method = RequestMethod.POST, produces = "application/json")
     @ResponseBody
     public JsonResponse insertLeave(@RequestBody Schedule schedule) {
         scheduleService.insertLeave(schedule);
         return new JsonResponse(null);
     }
-    @Role({"1","2","3","4"})
+
+    @Role({"1", "2", "3", "4"})
     @RequestMapping(value = "/api/schedules/buzz", method = RequestMethod.POST, produces = "application/json")
     @ResponseBody
     public JsonResponse insertBusinessTrip(@RequestBody Schedule schedule) {
         scheduleService.insertBuzz(schedule);
         return new JsonResponse(null);
     }
-    @Role({"1","2","3"})
+
+    @Role({"1", "2", "3"})
     @RequestMapping(value = "/api/schedules/{id}", method = RequestMethod.DELETE, produces = "application/json")
     @ResponseBody
     public JsonResponse deleteSchedule(@PathVariable long id) {
         scheduleService.deleteSchedule(id);
         return new JsonResponse(null);
     }
-    @Role({"1","2","3"})
+
+    @Role({"1", "2", "3"})
     @RequestMapping(value = "/api/schedules/accept/{id}", method = RequestMethod.PUT, produces = "application/json")
     @ResponseBody
     public JsonResponse acceptSchedule(@PathVariable long id) {
         scheduleService.acceptSchedule(id);
         return new JsonResponse(null);
     }
-    @Role({"1","2","3"})
+
+    @Role({"1", "2", "3"})
     @RequestMapping(value = "/api/schedules/reject/{id}", method = RequestMethod.PUT, produces = "application/json")
     @ResponseBody
     public JsonResponse rejectSchedule(@PathVariable long id) {
@@ -79,6 +81,7 @@ public class ScheduleController {
         }
         return "leave";
     }
+
     @RequestMapping("/buzz")
     public String buzz(ModelMap modelMap, HttpServletRequest request) {
         UserVO userVO = (UserVO) request.getAttribute("userInfo");

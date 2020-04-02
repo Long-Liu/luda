@@ -1,17 +1,12 @@
 package edu.zygxy.utils;
 
 
-import org.apache.tomcat.util.codec.binary.Base64;
-
 import javax.crypto.Cipher;
-import java.io.UnsupportedEncodingException;
 import java.security.Key;
 import java.security.MessageDigest;
 import java.security.Security;
 
-/**
- * Created by liangjiateng on 2017/4/17.
- */
+
 public class EncryptUtil {
 
 
@@ -29,6 +24,32 @@ public class EncryptUtil {
      * 解密工具
      */
     private Cipher decryptCipher = null;
+
+    /**
+     * 默认构造方法，使用默认密钥
+     *
+     * @throws Exception
+     */
+    public EncryptUtil() throws Exception {
+        this(strDefaultKey);
+    }
+
+    /**
+     * 指定密钥构造方法
+     *
+     * @param strKey 指定的密钥
+     * @throws Exception
+     */
+    public EncryptUtil(String strKey) throws Exception {
+        Security.addProvider(new com.sun.crypto.provider.SunJCE());
+        Key key = getKey(strKey.getBytes());
+
+        encryptCipher = Cipher.getInstance("DES");
+        encryptCipher.init(Cipher.ENCRYPT_MODE, key);
+
+        decryptCipher = Cipher.getInstance("DES");
+        decryptCipher.init(Cipher.DECRYPT_MODE, key);
+    }
 
     /**
      * 将byte数组转换为表示16进制值的字符串， 如：byte[]{8,18}转换为：0813， 和public static byte[]
@@ -79,30 +100,35 @@ public class EncryptUtil {
         return arrOut;
     }
 
-    /**
-     * 默认构造方法，使用默认密钥
-     *
-     * @throws Exception
-     */
-    public EncryptUtil() throws Exception {
-        this(strDefaultKey);
-    }
+    public static String getMD5(String pwd) throws Exception {
+        //用于加密的字符
+        char md5String[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+                'A', 'B', 'C', 'D', 'E', 'F'};
 
-    /**
-     * 指定密钥构造方法
-     *
-     * @param strKey 指定的密钥
-     * @throws Exception
-     */
-    public EncryptUtil(String strKey) throws Exception {
-        Security.addProvider(new com.sun.crypto.provider.SunJCE());
-        Key key = getKey(strKey.getBytes());
+        //使用平台的默认字符集将此 String 编码为 byte序列，并将结果存储到一个新的 byte数组中
+        byte[] btInput = pwd.getBytes();
 
-        encryptCipher = Cipher.getInstance("DES");
-        encryptCipher.init(Cipher.ENCRYPT_MODE, key);
+        //信息摘要是安全的单向哈希函数，它接收任意大小的数据，并输出固定长度的哈希值。
+        MessageDigest mdInst = MessageDigest.getInstance("MD5");
 
-        decryptCipher = Cipher.getInstance("DES");
-        decryptCipher.init(Cipher.DECRYPT_MODE, key);
+        //MessageDigest对象通过使用 update方法处理数据， 使用指定的byte数组更新摘要
+        mdInst.update(btInput);
+
+        // 摘要更新之后，通过调用digest（）执行哈希计算，获得密文
+        byte[] md = mdInst.digest();
+
+        // 把密文转换成十六进制的字符串形式
+        int j = md.length;
+        char str[] = new char[j * 2];
+        int k = 0;
+        for (int i = 0; i < j; i++) {   //  i = 0
+            byte byte0 = md[i];  //95
+            str[k++] = md5String[byte0 >>> 4 & 0xf];    //    5
+            str[k++] = md5String[byte0 & 0xf];   //   F
+        }
+
+        //返回经过加密后的字符串
+        return new String(str);
     }
 
     /**
@@ -169,38 +195,6 @@ public class EncryptUtil {
         Key key = new javax.crypto.spec.SecretKeySpec(arrB, "DES");
 
         return key;
-    }
-
-
-    public static String getMD5(String pwd) throws Exception {
-        //用于加密的字符
-        char md5String[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
-                'A', 'B', 'C', 'D', 'E', 'F'};
-
-        //使用平台的默认字符集将此 String 编码为 byte序列，并将结果存储到一个新的 byte数组中
-        byte[] btInput = pwd.getBytes();
-
-        //信息摘要是安全的单向哈希函数，它接收任意大小的数据，并输出固定长度的哈希值。
-        MessageDigest mdInst = MessageDigest.getInstance("MD5");
-
-        //MessageDigest对象通过使用 update方法处理数据， 使用指定的byte数组更新摘要
-        mdInst.update(btInput);
-
-        // 摘要更新之后，通过调用digest（）执行哈希计算，获得密文
-        byte[] md = mdInst.digest();
-
-        // 把密文转换成十六进制的字符串形式
-        int j = md.length;
-        char str[] = new char[j * 2];
-        int k = 0;
-        for (int i = 0; i < j; i++) {   //  i = 0
-            byte byte0 = md[i];  //95
-            str[k++] = md5String[byte0 >>> 4 & 0xf];    //    5
-            str[k++] = md5String[byte0 & 0xf];   //   F
-        }
-
-        //返回经过加密后的字符串
-        return new String(str);
     }
 
 }

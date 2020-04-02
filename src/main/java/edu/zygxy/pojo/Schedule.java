@@ -2,9 +2,7 @@ package edu.zygxy.pojo;
 
 import java.sql.Timestamp;
 
-/**
- * Created by liangjiateng on 2017/5/4.
- */
+
 public class Schedule {
 
     private Long id;
@@ -65,16 +63,16 @@ public class Schedule {
         return type;
     }
 
+    public void setType(Integer type) {
+        this.type = type;
+    }
+
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public void setType(Integer type) {
-        this.type = type;
     }
 
     public Long getUserId() {

@@ -3,9 +3,7 @@ package edu.zygxy.pojo;
 import java.sql.Time;
 import java.sql.Timestamp;
 
-/**
- * Created by liangjiateng on 2017/5/4.
- */
+
 public class WorkCheck {
 
     private Long id;
@@ -54,6 +52,10 @@ public class WorkCheck {
         return timeStr;
     }
 
+    public void setTimeStr(String timeStr) {
+        this.timeStr = timeStr;
+    }
+
     public String getStartCheckStr() {
         return startCheckStr;
     }
@@ -68,10 +70,6 @@ public class WorkCheck {
 
     public void setEndCheckStr(String endCheckStr) {
         this.endCheckStr = endCheckStr;
-    }
-
-    public void setTimeStr(String timeStr) {
-        this.timeStr = timeStr;
     }
 
     public Integer getType() {
