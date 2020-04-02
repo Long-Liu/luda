@@ -4,11 +4,11 @@
     <title>考勤管理系统</title>
     <meta charset="UTF-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <link href="lib/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="lib/css/matrix-style.css" rel="stylesheet"/>
-    <link href="lib/css/matrix-media.css" rel="stylesheet"/>
-    <link href="lib/css/font-awesome.css" rel="stylesheet"/>
-    <link href="lib/css/uniform.css" rel="stylesheet"/>
+    <link href="/lib/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="/lib/css/matrix-style.css" rel="stylesheet"/>
+    <link href="/lib/css/matrix-media.css" rel="stylesheet"/>
+    <link href="/lib/css/font-awesome.css" rel="stylesheet"/>
+    <link href="/lib/css/uniform.css" rel="stylesheet"/>
 </head>
 <body>
 
@@ -72,7 +72,7 @@
                         <td th:text="${user.phone}"></td>
                         <td class="center"><a th:href="@{/employee/update(userId=${user.id})}">修改信息</a><a
                                 style="margin-left: 10px;cursor:pointer"
-                                th:onclick="${'deleteUser('+user.id+')'}">删除员工</a></td>
+                                th:onclick="deleteUser(${user.id})">删除员工</a></td>
                     </tr>
                     </tbody>
                 </table>
@@ -83,14 +83,14 @@
 </div>
 
 
-<script src="lib/js/jquery.min.js"></script>
-<script src="lib/js/jquery.uniform.js"></script>
-<script src="lib/js/jquery.dataTables.min.js"></script>
-<script src="lib/js/bootstrap.min.js"></script>
-<script src="lib/js/matrix.js"></script>
-<script src="lib/js/matrix.tables.js"></script>
-<script src="lib/js/vue.js"></script>
-<script src="lib/js/component.js"></script>
+<script src="/lib/js/jquery.min.js"></script>
+<script src="/lib/js/jquery.uniform.js"></script>
+<script src="/lib/js/jquery.dataTables.min.js"></script>
+<script src="/lib/js/bootstrap.min.js"></script>
+<script src="/lib/js/matrix.js"></script>
+<script src="/lib/js/matrix.tables.js"></script>
+<script src="/lib/js/vue.js"></script>
+<script src="/lib/js/component.js"></script>
 <script>
     new Vue({
         el: '#l-app'

@@ -13,11 +13,11 @@
 ;(function (f) {
     // CommonJS
     if (typeof exports === "object" && typeof module !== "undefined") {
-        module.exports = f(require('react'));
+        module.exports = f(require('static/lib/js/react'));
 
         // RequireJS
     } else if (typeof define === "function" && define.amd) {
-        define(['react'], f);
+        define(['static/lib/js/react'], f);
 
         // <script>
     } else {

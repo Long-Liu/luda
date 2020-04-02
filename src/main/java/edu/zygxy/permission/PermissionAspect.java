@@ -31,7 +31,7 @@ public class PermissionAspect {
     @Autowired
     private RoleService roleService;
 
-    @Pointcut("execution(public * edu.zygxy.web..*.*(..))")
+    @Pointcut("execution(public * edu.zygxy.web..*.*(..)) &&!execution(public * edu.zygxy.web.AuthController.*(..)) ")
     public void checkRole() {
     }
 
