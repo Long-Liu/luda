@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>考勤管理系统</title>
+    <meta charset="UTF-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <link href="lib/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="lib/css/matrix-style.css" rel="stylesheet"/>
+    <link href="lib/css/matrix-media.css" rel="stylesheet"/>
+    <link href="lib/css/font-awesome.css" rel="stylesheet"/>
+    <link href="lib/css/datepicker.css" rel="stylesheet"/>
+    <link href="lib/css/uniform.css" rel="stylesheet"/>
+</head>
+<body>
+
+<div id="l-app">
+    <l-brand></l-brand>
+    <l-navigator>
+        <l-drop-menu-btn icon="icon icon-user" id="userInfo" title="欢迎您">
+            <l-drop-menu-item href="/login" icon="icon icon-reply" title="注销"></l-drop-menu-item>
+        </l-drop-menu-btn>
+    </l-navigator>
+    <l-sidebar>
+        <!--        <l-side-btn href="/index" icon="icon icon-home" title="首页"></l-side-btn>-->
+        <l-side-btn href="/employee" icon="icon icon-group" title="用户信息管理"></l-side-btn>
+        <!--        <l-side-btn href="/department" icon="icon icon-briefcase" title="部门管理"></l-side-btn>-->
+        <l-side-btn href="/work" icon="icon icon-edit" title="考勤信息管理"></l-side-btn>
+        <!--        <l-side-btn href="/buzz" icon="icon icon-plane" title="出差管理"></l-side-btn>-->
+        <!--        <l-side-btn href="/leave" icon="icon icon-ambulance" title="请假管理"></l-side-btn>-->
+        <l-side-btn href="/stat" icon="icon icon-bar-chart" title="数据维护"></l-side-btn>
+        <!--        <l-side-btn href="/system" icon="icon icon-cog" title="系统设置"></l-side-btn>-->
+        <l-side-btn href="/company" icon="icon icon-cog" title="公司地址维护"></l-side-btn>
+    </l-sidebar>
+
+    <l-content>
+        <l-router href="/index" iscurrent="false" slot="router" title="首页"></l-router>
+        <l-router href="/company" iscurrent="true" slot="router" title="公司地址维护"></l-router>
+        <l-container>
+            <l-tab-container>
+                <l-tab-content id="tab1" isactive="true" slot="content">
+                    <table class="table table-bordered data-table">
+                        <thead>
+                        <tr>
+                            <th>公司名称</th>
+                            <th>经度</th>
+                            <th>纬度</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="cl:${companyLocations}">
+                            <td th:text="${cl.name}">2017-03-28</td>
+                            <td th:text="${cl.latitude}">梁嘉腾</td>
+                            <td th:text="${cl.longitude}">正常出勤</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </l-tab-content>
+            </l-tab-container>
+        </l-container>
+
+    </l-content>
+</div>
+
+<script src="lib/js/jquery.min.js"></script>
+<script src="lib/js/bootstrap.min.js"></script>
+<script src="lib/js/jquery.dataTables.min.js"></script>
+<script src="lib/js/matrix.tables.js"></script>
+<script src="lib/js/bootstrap-colorpicker.js"></script>
+<script src="lib/js/bootstrap-datepicker.js"></script>
+<script src="lib/js/jquery.uniform.js"></script>
+<script src="lib/js/matrix.js"></script>
+<script src="lib/js/matrix.form_common.js"></script>
+<script src="lib/js/vue.js"></script>
+<script src="lib/js/component.js"></script>
+
+
+<script>
+    new Vue({
+        el: '#l-app'
+    })
+
+    function accept1(id) {
+        if (confirm("确定要同意申请吗？")) {
+            $.ajax({
+                type: "PUT",
+                contentType: "application/json",
+                url: "/api/schedules/accept/" + id,
+                success: function (result) {
+                    var obj = eval(result);
+                    if (obj.code == 200) {
+                        alert("设置成功!");
+                        location.reload();
+                    } else {
+                        alert(obj.message);
+                    }
+                }
+            });
+        }
+    }
+
+
+    function reject1(id) {
+        if (confirm("确定要同意申请吗？")) {
+            $.ajax({
+                type: "PUT",
+                contentType: "application/json",
+                url: "/api/schedules/reject/" + id,
+                success: function (result) {
+                    var obj = eval(result);
+                    if (obj.code == 200) {
+                        alert("设置成功!");
+                        location.reload();
+                    } else {
+                        alert(obj.message);
+                    }
+                }
+            });
+        }
+    }
+
+    function delete1(id) {
+
+        if (confirm("确定要删除申请吗？")) {
+            $.ajax({
+                type: "DELETE",
+                contentType: "application/json",
+                url: "/api/schedules/" + id,
+                success: function (result) {
+                    var obj = eval(result);
+                    if (obj.code == 200) {
+                        alert("删除成功!");
+                        location.reload();
+                    } else {
+                        alert(obj.message);
+                    }
+                }
+            });
+        }
+
+    }
+
+    function accept2(id) {
+        if (confirm("确定要同意申请吗？")) {
+            $.ajax({
+                type: "PUT",
+                contentType: "application/json",
+                url: "/api/schedules/accept/" + id,
+                success: function (result) {
+                    var obj = eval(result);
+                    if (obj.code == 200) {
+                        alert("设置成功!");
+                        location.reload();
+                    } else {
+                        alert(obj.message);
+                    }
+                }
+            });
+        }
+    }
+
+
+    function reject2(id) {
+        if (confirm("确定要同意申请吗？")) {
+            $.ajax({
+                type: "PUT",
+                contentType: "application/json",
+                url: "/api/schedules/reject/" + id,
+                success: function (result) {
+                    var obj = eval(result);
+                    if (obj.code == 200) {
+                        alert("设置成功!");
+                        location.reload();
+                    } else {
+                        alert(obj.message);
+                    }
+                }
+            });
+        }
+    }
+
+    function delete2(id) {
+
+        if (confirm("确定要删除申请吗？")) {
+            $.ajax({
+                type: "DELETE",
+                contentType: "application/json",
+                url: "/api/schedules/" + id,
+                success: function (result) {
+                    var obj = eval(result);
+                    if (obj.code == 200) {
+                        alert("删除成功!");
+                        location.reload();
+                    } else {
+                        alert(obj.message);
+                    }
+                }
+            });
+        }
+
+    }
+</script>
+</body>
+</html>
