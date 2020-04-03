@@ -11,4 +11,9 @@ public class IndexController {
     public String index() {
         return "index";
     }
+
+    @GetMapping
+    public String indexPage() {
+        return "employee";
+    }
 }
