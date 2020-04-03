@@ -21,14 +21,14 @@
         </l-drop-menu-btn>
     </l-navigator>
     <l-sidebar>
-        <l-side-btn href="/index" icon="icon icon-home" title="首页"></l-side-btn>
-        <l-side-btn href="/employee" icon="icon icon-group" title="员工管理"></l-side-btn>
-        <l-side-btn href="/department" icon="icon icon-briefcase" title="部门管理"></l-side-btn>
-        <l-side-btn href="/work" icon="icon icon-edit" title="考勤管理"></l-side-btn>
-        <l-side-btn href="/buzz" icon="icon icon-plane" title="出差管理"></l-side-btn>
-        <l-side-btn href="/leave" icon="icon icon-ambulance" title="请假管理"></l-side-btn>
-        <l-side-btn href="/stat" icon="icon icon-bar-chart" title="数据统计"></l-side-btn>
-        <l-side-btn href="/system" icon="icon icon-cog" title="系统设置"></l-side-btn>
+        <!--        <l-side-btn href="/index" icon="icon icon-home" title="首页"></l-side-btn>-->
+        <l-side-btn href="/employee" icon="icon icon-group" title="用户信息管理"></l-side-btn>
+<!--        <l-side-btn href="/department" icon="icon icon-briefcase" title="部门管理"></l-side-btn>-->
+        <l-side-btn href="/work" icon="icon icon-edit" title="考勤信息管理"></l-side-btn>
+<!--        <l-side-btn href="/buzz" icon="icon icon-plane" title="出差管理"></l-side-btn>-->
+<!--        <l-side-btn href="/leave" icon="icon icon-ambulance" title="请假管理"></l-side-btn>-->
+        <l-side-btn href="/stat" icon="icon icon-bar-chart" title="数据维护"></l-side-btn>
+<!--        <l-side-btn href="/system" icon="icon icon-cog" title="系统设置"></l-side-btn>-->
     </l-sidebar>
 
     <l-content>
@@ -41,12 +41,12 @@
                 <p th:text="${config.startStr}">09：00</p><strong>下班时间：</strong>
                 <p th:text="${config.endStr}">09：00</p></div>
             <!--<l-quick-action>-->
-            <!--<l-quick-btn title="打卡上班" icon="icon icon-check" color="green"></l-quick-btn>-->
-            <!--<l-quick-btn title="打卡下班" icon="icon icon-signout" color="red"></l-quick-btn>-->
+            <!--<l-quick-btn title="签到" icon="icon icon-check" color="green"></l-quick-btn>-->
+            <!--<l-quick-btn title="签退" icon="icon icon-signout" color="red"></l-quick-btn>-->
             <!--</l-quick-action>-->
             <ul class="quick-actions">
-                <li class="bg_lg"><a onclick="startWork()"><i class="icon icon-check"></i>打卡上班</a></li>
-                <li class="bg_lo"><a onclick="endWork()"><i class="icon icon-signout"></i>打卡下班</a></li>
+                <li class="bg_lg"><a onclick="startWork()"><i class="icon icon-check"></i>签到</a></li>
+                <li class="bg_lo"><a onclick="endWork()"><i class="icon icon-signout"></i>签退</a></li>
             </ul>
             <l-tab-container>
                 <l-tab-nav href="#tab1" isactive="true" slot="nav" title="出勤记录"></l-tab-nav>

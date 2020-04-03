@@ -93,7 +93,7 @@ public class HolidayController {
             }
         }
 
-        return new JsonResponse(400, "今日还未打卡上班");
+        return new JsonResponse(400, "今日还未签到");
     }
 
     @Role({"1"})
