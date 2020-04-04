@@ -39,9 +39,9 @@
 <script src="/lib/js/matrix.login.js"></script>
 <script type="text/javascript">
     function login() {
-        var username = $("#username").val();
-        var password = $("#password").val();
-        var json = {};
+        let username = $("#username").val();
+        let password = $("#password").val();
+        let json = {};
         json.email = username;
         json.password = password;
         $.ajax({
@@ -51,7 +51,7 @@
             dataType: "json",
             url: "/api/login",
             success: function (result) {
-                var obj = eval(result);
+                let obj = eval(result);
                 if (obj.code === 200) {
                     location.href = "/employee";
                 } else {

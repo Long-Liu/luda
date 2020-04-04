@@ -23,12 +23,13 @@
     <l-sidebar>
         <!--        <l-side-btn href="/index" icon="icon icon-home" title="首页"></l-side-btn>-->
         <l-side-btn href="/employee" icon="icon icon-group" title="用户信息管理"></l-side-btn>
-<!--        <l-side-btn href="/department" icon="icon icon-briefcase" title="部门管理"></l-side-btn>-->
+        <l-side-btn href="/department" icon="icon icon-briefcase" title="部门管理"></l-side-btn>
         <l-side-btn href="/work" icon="icon icon-edit" title="考勤信息管理"></l-side-btn>
-<!--        <l-side-btn href="/buzz" icon="icon icon-plane" title="出差管理"></l-side-btn>-->
-<!--        <l-side-btn href="/leave" icon="icon icon-ambulance" title="请假管理"></l-side-btn>-->
+        <l-side-btn href="/buzz" icon="icon icon-plane" title="出差管理"></l-side-btn>
+        <l-side-btn href="/leave" icon="icon icon-ambulance" title="请假管理"></l-side-btn>
         <l-side-btn href="/stat" icon="icon icon-bar-chart" title="数据维护"></l-side-btn>
-<!--        <l-side-btn href="/system" icon="icon icon-cog" title="系统设置"></l-side-btn>--><l-side-btn href="/company_location" icon="icon icon-cog" title="公司地址维护"></l-side-btn>
+<!--        <l-side-btn href="/system" icon="icon icon-cog" title="系统设置"></l-side-btn>-->
+        <l-side-btn href="/company_location" icon="icon icon-cog" title="公司地址维护"></l-side-btn>
     </l-sidebar>
 
     <l-content>
@@ -155,14 +156,14 @@
     })
 
     function addConfig() {
-        var json = {};
-        if ($("#start").val() == '' || $("#end").val() == '') {
+        let json = {};
+        if ($("#start").val() === '' || $("#end").val() === '') {
             alert("输入不能为空");
         } else {
-            var startDate = "2017/01/01 " + $("#start").val()
-            var endDate = "2017/01/01 " + $("#end").val()
-            var start = new Date(startDate).getTime();
-            var end = new Date(endDate).getTime();
+            let startDate = "2017/01/01 " + $("#start").val()
+            let endDate = "2017/01/01 " + $("#end").val()
+            let start = new Date(startDate).getTime();
+            let end = new Date(endDate).getTime();
             json.start = start;
             json.end = end;
             $.ajax({
@@ -172,8 +173,8 @@
                 data: JSON.stringify(json),
                 dataType: "json",
                 success: function (result) {
-                    var obj = eval(result);
-                    if (obj.code == 200) {
+                    let obj = eval(result);
+                    if (obj.code === 200) {
                         alert("设置成功!");
                         location.reload();
                     } else {
@@ -185,12 +186,12 @@
     }
 
     function addHoliday() {
-        var json = {};
-        if ($("#date").val() == '' || $("#remark").val() == '') {
+        let json = {};
+        if ($("#date").val() === '' || $("#remark").val() === '') {
             alert("输入不能为空");
         } else {
-            var date = $("#date").val().replace(/-/g, '/')
-            var time = new Date(date).getTime();
+            let date = $("#date").val().replace(/-/g, '/')
+            let time = new Date(date).getTime();
             json.time = time;
             json.remark = $("#remark").val();
             $.ajax({
@@ -200,8 +201,8 @@
                 data: JSON.stringify(json),
                 dataType: "json",
                 success: function (result) {
-                    var obj = eval(result);
-                    if (obj.code == 200) {
+                    let obj = eval(result);
+                    if (obj.code === 200) {
                         alert("新增假期成功!");
                         location.reload();
                     } else {
@@ -220,8 +221,8 @@
                 contentType: "application/json",
                 url: "/api/holidays/" + id,
                 success: function (result) {
-                    var obj = eval(result);
-                    if (obj.code == 200) {
+                    let obj = eval(result);
+                    if (obj.code === 200) {
                         alert("删除成功!");
                         location.reload();
                     } else {
@@ -241,8 +242,8 @@
             contentType: "application/json",
             url: "/api/work_checks/start",
             success: function (result) {
-                var obj = eval(result);
-                if (obj.code == 200) {
+                let obj = eval(result);
+                if (obj.code === 200) {
                     alert("打卡成功!");
                     location.reload();
                 } else {
@@ -262,8 +263,8 @@
             contentType: "application/json",
             url: "/api/work_checks/end",
             success: function (result) {
-                var obj = eval(result);
-                if (obj.code == 200) {
+                let obj = eval(result);
+                if (obj.code === 200) {
                     alert("打卡成功!");
                     location.reload();
                 } else {

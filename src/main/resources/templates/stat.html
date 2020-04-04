@@ -21,14 +21,15 @@
         </l-drop-menu-btn>
     </l-navigator>
     <l-sidebar>
-        <!--        <l-side-btn href="/index" icon="icon icon-home" title="首页"></l-side-btn>-->
+         <!--        <l-side-btn href="/index" icon="icon icon-home" title="首页"></l-side-btn>-->
         <l-side-btn href="/employee" icon="icon icon-group" title="用户信息管理"></l-side-btn>
-<!--        <l-side-btn href="/department" icon="icon icon-briefcase" title="部门管理"></l-side-btn>-->
+        <l-side-btn href="/department" icon="icon icon-briefcase" title="部门管理"></l-side-btn>
         <l-side-btn href="/work" icon="icon icon-edit" title="考勤信息管理"></l-side-btn>
-<!--        <l-side-btn href="/buzz" icon="icon icon-plane" title="出差管理"></l-side-btn>-->
-<!--        <l-side-btn href="/leave" icon="icon icon-ambulance" title="请假管理"></l-side-btn>-->
+        <l-side-btn href="/buzz" icon="icon icon-plane" title="出差管理"></l-side-btn>
+        <l-side-btn href="/leave" icon="icon icon-ambulance" title="请假管理"></l-side-btn>
         <l-side-btn href="/stat" icon="icon icon-bar-chart" title="数据维护"></l-side-btn>
-<!--        <l-side-btn href="/system" icon="icon icon-cog" title="系统设置"></l-side-btn>--><l-side-btn href="/company_location" icon="icon icon-cog" title="公司地址维护"></l-side-btn>
+<!--        <l-side-btn href="/system" icon="icon icon-cog" title="系统设置"></l-side-btn>-->
+        <l-side-btn href="/company_location" icon="icon icon-cog" title="公司地址维护"></l-side-btn>
     </l-sidebar>
 
     <l-content>
@@ -96,11 +97,11 @@
                                 <td th:text="${leave.endStr}">2017-05-11 09：00</td>
                                 <td th:text="${leave.statusStr}">已批准</td>
                                 <td class="center"><a style="margin-left: 10px;cursor:pointer"
-                                                      th:onclick="${'accept1('+leave.id+')'}">批准</a><a
+                                                      th:onclick="accept1([[${leave.id}]])">批准</a><a
                                         style="margin-left: 10px;cursor:pointer"
-                                        th:onclick="${'reject1('+leave.id+')'}">不批准</a><a
+                                        th:onclick="reject1([[${leave.id}]])">不批准</a><a
                                         style="margin-left: 10px;cursor:pointer"
-                                        th:onclick="${'delete1('+leave.id+')'}">删除申请</a></td>
+                                        th:onclick="delete1([[${leave.id}]])">删除申请</a></td>
                             </tr>
                             </tbody>
                         </table>
@@ -130,11 +131,11 @@
                                 <td th:text="${leave.endStr}">2017-05-11 09：00</td>
                                 <td th:text="${leave.statusStr}">已批准</td>
                                 <td class="center"><a style="margin-left: 10px;cursor:pointer"
-                                                      th:onclick="${'accept2('+leave.id+')'}">批准</a><a
+                                                      th:onclick="accept2([[${leave.id}]])">批准</a><a
                                         style="margin-left: 10px;cursor:pointer"
-                                        th:onclick="${'reject2('+leave.id+')'}">不批准</a><a
+                                        th:onclick="reject2([[${leave.id}]])">不批准</a><a
                                         style="margin-left: 10px;cursor:pointer"
-                                        th:onclick="${'delete2('+leave.id+')'}">删除申请</a></td>
+                                        th:onclick="delete2([[${leave.id}]])">删除申请</a></td>
                             </tr>
                             </tbody>
                         </table>
@@ -171,8 +172,8 @@
                 contentType: "application/json",
                 url: "/api/schedules/accept/" + id,
                 success: function (result) {
-                    var obj = eval(result);
-                    if (obj.code == 200) {
+                    let obj = eval(result);
+                    if (obj.code === 200) {
                         alert("设置成功!");
                         location.reload();
                     } else {
@@ -191,8 +192,8 @@
                 contentType: "application/json",
                 url: "/api/schedules/reject/" + id,
                 success: function (result) {
-                    var obj = eval(result);
-                    if (obj.code == 200) {
+                    let obj = eval(result);
+                    if (obj.code === 200) {
                         alert("设置成功!");
                         location.reload();
                     } else {
@@ -211,8 +212,8 @@
                 contentType: "application/json",
                 url: "/api/schedules/" + id,
                 success: function (result) {
-                    var obj = eval(result);
-                    if (obj.code == 200) {
+                    let obj = eval(result);
+                    if (obj.code === 200) {
                         alert("删除成功!");
                         location.reload();
                     } else {
@@ -231,8 +232,8 @@
                 contentType: "application/json",
                 url: "/api/schedules/accept/" + id,
                 success: function (result) {
-                    var obj = eval(result);
-                    if (obj.code == 200) {
+                    let obj = eval(result);
+                    if (obj.code === 200) {
                         alert("设置成功!");
                         location.reload();
                     } else {
@@ -251,8 +252,8 @@
                 contentType: "application/json",
                 url: "/api/schedules/reject/" + id,
                 success: function (result) {
-                    var obj = eval(result);
-                    if (obj.code == 200) {
+                    let obj = eval(result);
+                    if (obj.code === 200) {
                         alert("设置成功!");
                         location.reload();
                     } else {
@@ -271,8 +272,8 @@
                 contentType: "application/json",
                 url: "/api/schedules/" + id,
                 success: function (result) {
-                    var obj = eval(result);
-                    if (obj.code == 200) {
+                    let obj = eval(result);
+                    if (obj.code === 200) {
                         alert("删除成功!");
                         location.reload();
                     } else {
