@@ -1,6 +1,3 @@
-/**
- * header
- */
 //标题栏
 Vue.component('l-brand', {
     props: ['href'],
@@ -244,7 +241,7 @@ Vue.component('l-form-custom', {
     template: '<div class="control-group"><label class="control-label">{{title}}</label><div class="controls"><slot></slot></div></div>'
 })
 Vue.component('l-form-input', {
-    props: ['title', 'placeholder', 'id', 'type', 'size', 'value'],
+    props: ['title', 'placeholder', 'id', 'type', 'size','value'],
     data: function () {
         return {
             data_size: ''
