@@ -72,7 +72,7 @@
                         <td th:text="${user.phone}"></td>
                         <td class="center"><a th:href="@{/employee/update(userId=${user.id})}">修改信息</a><a
                                 style="margin-left: 10px;cursor:pointer"
-                                th:onclick="deleteUser(${user.id})">删除员工</a></td>
+                                th:onclick="deleteUser('${user.id}')">删除员工</a></td>
                     </tr>
                     </tbody>
                 </table>

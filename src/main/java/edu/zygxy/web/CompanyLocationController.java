@@ -9,13 +9,13 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequiredArgsConstructor
-public class CompanyController {
+public class CompanyLocationController {
     private final CompanyLocationMapper companyLocationMapper;
 
     @GetMapping("/company")
     public String company(ModelMap modelMap) {
         modelMap.addAttribute("companyLocations", companyLocationMapper.selectList());
-        return "company";
+        return "company_location";
     }
 
     @ResponseBody
