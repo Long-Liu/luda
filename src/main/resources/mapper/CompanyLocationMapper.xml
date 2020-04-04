@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.zygxy.dao.CompanyLocationMapper">
+    <delete id="deleteById" parameterType="java.lang.Integer">
+        delete from company_location where id = #{id};
+    </delete>
+
+    <select id="selectList" resultType="edu.zygxy.pojo.CompanyLocation">
+        select * from company_location;
+    </select>
+
+    <!--    <select id="getConfig" resultType="edu.zygxy.pojo.Config">-->
+    <!--        SELECT * FROM config;-->
+    <!--    </select>-->
+
+    <!--    <delete id="deleteConfig">-->
+    <!--        DELETE FROM config;-->
+    <!--    </delete>-->
+</mapper>

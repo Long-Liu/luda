@@ -1,22 +1,27 @@
 package edu.zygxy.web;
 
-import edu.zygxy.pojo.CompanyLocationVO;
+import edu.zygxy.dao.CompanyLocationMapper;
+import edu.zygxy.pojo.JsonResponse;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-
-import java.util.Arrays;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
+@RequiredArgsConstructor
 public class CompanyController {
+    private final CompanyLocationMapper companyLocationMapper;
+
     @GetMapping("/company")
     public String company(ModelMap modelMap) {
-        CompanyLocationVO cl = new CompanyLocationVO();
-        cl.setId("faf");
-        cl.setName("分部");
-        cl.setLatitude(22.22D);
-        cl.setLongitude(11.11D);
-        modelMap.addAttribute("companyLocations", Arrays.asList(cl));
+        modelMap.addAttribute("companyLocations", companyLocationMapper.selectList());
         return "company";
+    }
+
+    @ResponseBody
+    @DeleteMapping("/api/company/location/{id}")
+    public JsonResponse deleteById(@PathVariable Integer id) {
+        companyLocationMapper.deleteById(id);
+        return new JsonResponse(null);
     }
 }

@@ -41,23 +41,31 @@
                     <table class="table table-bordered data-table">
                         <thead>
                         <tr>
-                            <th>公司名称</th>
+                            <th>公司分部名称</th>
                             <th>经度</th>
                             <th>纬度</th>
+                            <th>操作</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr th:each="cl:${companyLocations}">
-                            <td th:text="${cl.name}">2017-03-28</td>
-                            <td th:text="${cl.latitude}">梁嘉腾</td>
-                            <td th:text="${cl.longitude}">正常出勤</td>
+                            <td th:text="${cl.id}" style="text-align: center" hidden></td>
+                            <td th:text="${cl.name}" style="text-align: center"></td>
+                            <td th:text="${cl.latitude}" style="text-align: center"></td>
+                            <td th:text="${cl.longitude}" style="text-align: center"></td>
+                            <td style="text-align: center">
+                                <a style="margin-left: 10px;cursor:pointer"
+                                   th:onclick="@{/company/location/insert}">新增</a>
+                                <a style="margin-left: 10px;cursor:pointer"
+                                   th:href="@{/company/location/update(clId=${cl.id})}">修改</a>
+                                <a style="margin-left: 10px;cursor:pointer" th:onclick="deleteLocationById(${cl.id})">删除</a>
+                            </td>
                         </tr>
                         </tbody>
                     </table>
                 </l-tab-content>
             </l-tab-container>
         </l-container>
-
     </l-content>
 </div>
 
@@ -79,16 +87,16 @@
         el: '#l-app'
     })
 
-    function accept1(id) {
-        if (confirm("确定要同意申请吗？")) {
+    function deleteLocationById(id) {
+        if (confirm("确定要删除该公司地址吗？")) {
             $.ajax({
-                type: "PUT",
+                type: "DELETE",
                 contentType: "application/json",
-                url: "/api/schedules/accept/" + id,
+                url: "/api/company/location/" + id,
                 success: function (result) {
                     var obj = eval(result);
-                    if (obj.code == 200) {
-                        alert("设置成功!");
+                    if (obj.code === 200) {
+                        alert("删除成功!");
                         location.reload();
                     } else {
                         alert(obj.message);
