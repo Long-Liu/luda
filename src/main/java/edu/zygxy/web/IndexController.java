@@ -12,7 +12,7 @@ public class IndexController {
         return "index";
     }
 
-    @GetMapping("")
+    @GetMapping("/")
     public String indexPage() {
         return "employee";
     }
