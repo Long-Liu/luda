@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>考勤管理系统</title>
+    <meta charset="UTF-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <link href="/lib/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="/lib/css/matrix-style.css" rel="stylesheet"/>
+    <link href="/lib/css/matrix-media.css" rel="stylesheet"/>
+    <link href="/lib/css/font-awesome.css" rel="stylesheet"/>
+</head>
+<body>
+
+<div id="l-app">
+    <l-brand></l-brand>
+    <l-navigator>
+        <l-drop-menu-btn icon="icon icon-user" id="userInfo" title="欢迎您">
+            <l-drop-menu-item href="/login" icon="icon icon-reply" title="注销"></l-drop-menu-item>
+        </l-drop-menu-btn>
+    </l-navigator>
+    <l-sidebar>
+        <!--        <l-side-btn href="/index" icon="icon icon-home" title="首页"></l-side-btn>-->
+        <l-side-btn href="/employee" icon="icon icon-group" title="用户信息管理"></l-side-btn>
+        <!--        <l-side-btn href="/department" icon="icon icon-briefcase" title="部门管理"></l-side-btn>-->
+        <l-side-btn href="/work" icon="icon icon-edit" title="考勤信息管理"></l-side-btn>
+        <!--        <l-side-btn href="/buzz" icon="icon icon-plane" title="出差管理"></l-side-btn>-->
+        <!--        <l-side-btn href="/leave" icon="icon icon-ambulance" title="请假管理"></l-side-btn>-->
+        <l-side-btn href="/stat" icon="icon icon-bar-chart" title="数据维护"></l-side-btn>
+        <!--        <l-side-btn href="/system" icon="icon icon-cog" title="系统设置"></l-side-btn>-->
+        <l-side-btn href="/company_location" icon="icon icon-cog" title="公司地址维护"></l-side-btn>
+    </l-sidebar>
+
+    <l-content>
+        <l-router href="/index" iscurrent="false" slot="router" title="首页"></l-router>
+        <l-router href="/company_location" slot="router" title="公司地址管理"></l-router>
+        <l-router href="#" iscurrent="true" slot="router" title="新增公司地址信息"></l-router>
+        <l-container>
+            <l-widget-container icon="icon icon-edit" title="新增公司地址信息">
+                <l-form>
+                    <l-form-input id="name" size="10" title="分部名称" type="text"></l-form-input>
+                    <l-form-input id="latitude" size="10" title="纬度"
+                                  type="number"></l-form-input>
+                    <l-form-input id="longitude" size="10" title="经度"
+                                  type="number"></l-form-input>
+                </l-form>
+                <l-form-btn-container>
+                    <button class="btn btn-success" th:onclick="insert();">新增公司地址信息</button>
+                </l-form-btn-container>
+            </l-widget-container>
+        </l-container>
+
+    </l-content>
+</div>
+
+
+<script src="/lib/js/jquery.min.js"></script>
+<script src="/lib/js/bootstrap.min.js"></script>
+<script src="/lib/js/matrix.js"></script>
+<script src="/lib/js/vue.js"></script>
+<script src="/lib/js/component.js"></script>
+<script src="/lib/js/select2.min.js"></script>
+<script src="/lib/js/matrix.form_common.js"></script>
+<script>
+    new Vue({
+        el: '#l-app'
+    })
+
+    function insert(id) {
+        if (confirm("确定要新增该公司地址吗？")) {
+            let json = {};
+            let name = $("#name").val();
+            let longitude = $("#longitude").val();
+            let latitude = $("#latitude").val();
+            if (name === undefined) {
+                alert("分部名称不能为空");
+                return;
+            } else if (longitude === undefined || (longitude < 0 || longitude > 180)) {
+                alert("经度不能为空、且经度范围必须为0 ~ 180");
+                return;
+            } else if (latitude === undefined || latitude < 0 || latitude > 90) {
+                alert("纬度不能为空、且纬度范围必须为0 ~ 90");
+                return;
+            }
+            json.name = name;
+            json.longitude = longitude;
+            json.latitude = latitude;
+            $.ajax({
+                type: "PUT",
+                contentType: "application/json",
+                url: "/api/company/location",
+                data: JSON.stringify(json),
+                success: function (result) {
+                    let obj = eval(result);
+                    if (obj.code === 200) {
+                        window.history.back();
+                    } else {
+                        alert(obj.message);
+                    }
+                }
+            });
+        }
+    }
+</script>
+</body>
+</html>

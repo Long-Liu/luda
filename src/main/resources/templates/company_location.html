@@ -29,12 +29,12 @@
         <!--        <l-side-btn href="/leave" icon="icon icon-ambulance" title="请假管理"></l-side-btn>-->
         <l-side-btn href="/stat" icon="icon icon-bar-chart" title="数据维护"></l-side-btn>
         <!--        <l-side-btn href="/system" icon="icon icon-cog" title="系统设置"></l-side-btn>-->
-        <l-side-btn href="/company" icon="icon icon-cog" title="公司地址维护"></l-side-btn>
+        <l-side-btn href="/company_location" icon="icon icon-cog" title="公司地址维护"></l-side-btn>
     </l-sidebar>
 
     <l-content>
         <l-router href="/index" iscurrent="false" slot="router" title="首页"></l-router>
-        <l-router href="/company" iscurrent="true" slot="router" title="公司地址维护"></l-router>
+        <l-router href="/company_location" iscurrent="true" slot="router" title="公司地址维护"></l-router>
         <l-container>
             <l-tab-container>
                 <l-tab-content id="tab1" isactive="true" slot="content">
@@ -55,10 +55,11 @@
                             <td th:text="${cl.longitude}" style="text-align: center"></td>
                             <td style="text-align: center">
                                 <a style="margin-left: 10px;cursor:pointer"
-                                   th:onclick="@{/company/location/insert}">新增</a>
+                                   th:href="@{/company/location/insertPage}">新增</a>
                                 <a style="margin-left: 10px;cursor:pointer"
-                                   th:href="@{/company/location/update(clId=${cl.id})}">修改</a>
-                                <a style="margin-left: 10px;cursor:pointer" th:onclick="deleteLocationById([[${cl.id}]]);">删除</a>
+                                   th:href="@{/company/location/updatePage(id=${cl.id})}">修改</a>
+                                <a style="margin-left: 10px;cursor:pointer"
+                                   th:onclick="deleteLocationById([[${cl.id}]]);">删除</a>
                             </td>
                         </tr>
                         </tbody>
