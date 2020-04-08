@@ -23,9 +23,11 @@ public interface WorkService {
 
     boolean insertWorkCheck(WorkCheck workCheck);
 
-    boolean updateEndCheck(long userId);
+    boolean offWork(long userId);
 
     List<WorkCheck> listWorkChecksByUserId(long userId);
 
     List<WorkCheck> listWorkChecks();
+
+    void startWork(long userId);
 }

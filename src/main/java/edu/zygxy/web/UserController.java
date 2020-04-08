@@ -1,14 +1,20 @@
 package edu.zygxy.web;
 
+import edu.zygxy.dao.CompanyLocationMapper;
 import edu.zygxy.pojo.*;
 import edu.zygxy.service.DepartmentService;
 import edu.zygxy.service.RoleService;
 import edu.zygxy.service.UserService;
+import edu.zygxy.service.WorkService;
+import edu.zygxy.utils.LocationUtil;
+import org.gavaghan.geodesy.Ellipsoid;
+import org.gavaghan.geodesy.GlobalCoordinates;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,6 +28,34 @@ public class UserController {
     private RoleService roleService;
     @Autowired
     private DepartmentService departmentService;
+    @Autowired
+    private CompanyLocationMapper companyLocationMapper;
+    @Resource
+    private WorkService workService;
+
+    @edu.zygxy.permission.Role({"1", "2", "3"})
+    @PostMapping("/api/users/punching")
+    @ResponseBody
+    public JsonResponse punching(@RequestBody PunchingBO o) {
+        List<CompanyLocation> cls = companyLocationMapper.selectList();
+        GlobalCoordinates source = new GlobalCoordinates(o.getLat(), o.getLng());
+        for (CompanyLocation cl : cls) {
+            double d = LocationUtil.getDistanceMeter(source, new GlobalCoordinates(cl.getLatitude(),
+                    cl.getLongitude()), Ellipsoid.Sphere);
+            if (d <= 1000.D) {
+                Integer type = o.getType();
+                /*打卡上班*/
+                if (type == 1) {
+                    workService.startWork(o.getUserId());
+                } else {
+                    /*打卡下班*/
+                    workService.offWork(o.getUserId());
+                }
+                return new JsonResponse(200, o.getType() == 1 ? "打卡下班成功" : "打卡上班成功");
+            }
+        }
+        return new JsonResponse(400, "距离任何分公司都距离过长！");
+    }
 
     @RequestMapping("/employee")
     public String employee(@RequestParam(defaultValue = "0") long departmentId, ModelMap modelMap) {

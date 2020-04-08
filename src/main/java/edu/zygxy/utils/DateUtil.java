@@ -63,8 +63,7 @@ public class DateUtil {
      */
     public static String dateToString(Date date) {
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String dateStr = dateFormat.format(date).toString();
-        return dateStr;
+        return dateFormat.format(date);
     }
 
     public static String longToString(long time) {
@@ -74,8 +73,7 @@ public class DateUtil {
 
     public static String dateToString2(Date date) {
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        String dateStr = dateFormat.format(date).toString();
-        return dateStr;
+        return dateFormat.format(date);
     }
 
     public static String longToString2(long time) {

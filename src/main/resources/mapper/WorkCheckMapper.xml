@@ -27,6 +27,15 @@
         time=DATE_FORMAT(now(),'%Y-%m-%d');
     </update>
 
+    <update id="updateWorkCheckStartCheck" parameterType="java.lang.Long">
+        UPDATE work_check SET
+        `start_check`=now(),
+        WHERE
+        user_id=#{userId}
+        AND
+        time=DATE_FORMAT(now(),'%Y-%m-%d');
+    </update>
+
 
     <select id="listWorkChecksByUserId" resultType="edu.zygxy.pojo.WorkCheck">
         SELECT * FROM work_check WHERE user_id=#{userId} ORDER BY time DESC ;

@@ -13,6 +13,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.Time;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 
@@ -92,7 +97,7 @@ public class WorkServiceImpl implements WorkService {
     }
 
     @Override
-    public boolean updateEndCheck(long userId) {
+    public boolean offWork(long userId) {
         WorkCheck workCheck1 = workCheckMapper.getWorkCheckByUserIdAndTime(userId);
         if (workCheck1 != null) {
             workCheckMapper.updateWorkCheckEndCheck(userId, 0);
@@ -114,5 +119,22 @@ public class WorkServiceImpl implements WorkService {
     @Override
     public List<WorkCheck> listWorkChecks() {
         return workCheckMapper.listWorkChecks();
+    }
+
+    @Override
+    public void startWork(long userId) {
+        WorkCheck workCheck = workCheckMapper.getWorkCheckByUserIdAndTime(userId);
+        /*fist time*/
+        if (workCheck == null) {
+            WorkCheck fw = new WorkCheck();
+            fw.setStart(new Time(System.currentTimeMillis()));
+            fw.setEnd(new Time(System.currentTimeMillis()));
+            fw.setType(1);
+            fw.setUserId(userId);
+            workCheckMapper.insertWorkCheck(fw);
+        } else {
+            /*more than once update start time*/
+            workCheckMapper.updateWorkCheckStartCheck(userId);
+        }
     }
 }

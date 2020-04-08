@@ -19,4 +19,6 @@ public interface WorkCheckMapper {
     List<WorkCheck> listWorkChecks();
 
     WorkCheck getWorkCheckByUserIdAndTime(long userId);
+
+    void updateWorkCheckStartCheck(long userId);
 }
