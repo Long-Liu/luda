@@ -2,8 +2,10 @@ package edu.zygxy.service.impl;
 
 import edu.zygxy.dao.RoleMapper;
 import edu.zygxy.dao.ScheduleMapper;
+import edu.zygxy.dao.UserMapper;
 import edu.zygxy.pojo.Role;
 import edu.zygxy.pojo.Schedule;
+import edu.zygxy.pojo.User;
 import edu.zygxy.service.ScheduleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,6 +21,8 @@ public class ScheduleServiceImpl implements ScheduleService {
     private ScheduleMapper scheduleMapper;
     @Resource
     private RoleMapper roleMapper;
+    @Resource
+    private UserMapper userMapper;
 
     @Override
     public void insertLeave(Schedule schedule) {
@@ -44,7 +48,8 @@ public class ScheduleServiceImpl implements ScheduleService {
     @Override
     public List<Schedule> listLeaves(long userId) {
         List<Schedule> schedules = scheduleMapper.listSchedulesByUserIdAndType(userId, 0);
-        Role r = roleMapper.getRoleById(userId);
+        User usr = userMapper.getUserById(userId);
+        Role r = roleMapper.getRoleById(usr.getRoleId());
         if (!"员工".equals(r.getName())) {
             schedules.addAll(scheduleMapper.listButUserId(userId));
         }
