@@ -1,5 +1,6 @@
 package edu.zygxy.service.impl;
 
+import com.alibaba.fastjson.JSON;
 import edu.zygxy.dao.UserMapper;
 import edu.zygxy.pojo.User;
 import edu.zygxy.service.AuthService;
@@ -8,6 +9,7 @@ import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,7 +20,7 @@ import java.util.Map;
 @Service
 public class AuthServiceImpl implements AuthService {
 
-    @Autowired
+    @Resource
     private UserMapper userMapper;
 
     @Override
@@ -56,7 +58,7 @@ public class AuthServiceImpl implements AuthService {
                     jsonObject.put("roleId", user.getRoleId());
                     jsonObject.put("timestamp", System.currentTimeMillis() / 1000);
                     EncryptUtil encryptUtil = new EncryptUtil("token");
-                    jsonObject.put("token", encryptUtil.encrypt(jsonObject.toString()));
+                    jsonObject.put("token", encryptUtil.encrypt(JSON.toJSONString(jsonObject)));
                     return jsonObject;
                 }
             } catch (Exception e) {

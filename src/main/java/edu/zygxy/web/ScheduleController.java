@@ -21,6 +21,12 @@ public class ScheduleController {
     @Autowired
     private ScheduleService scheduleService;
 
+    @GetMapping("/api/schedules/leave/{userId}")
+    @ResponseBody
+    public List<Schedule> getLeaveByUserId(@PathVariable Long userId) {
+        return scheduleService.listLeaves(userId);
+    }
+
     @Role({"1", "2", "3", "4"})
     @RequestMapping(value = "/api/schedules/leave", method = RequestMethod.POST, produces = "application/json")
     @ResponseBody
