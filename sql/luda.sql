@@ -194,6 +194,16 @@ UNLOCK TABLES;
 -- Table structure for table `work_check`
 --
 
+DROP TABLE IF EXISTS `company_location`;
+create table company_location
+(
+	id int auto_increment
+		primary key,
+	name varchar(10) not null,
+	longitude double not null,
+	latitude double not null
+)ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+
 DROP TABLE IF EXISTS `work_check`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
