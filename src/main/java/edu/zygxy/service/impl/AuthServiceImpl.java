@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.HashMap;
+import java.util.Map;
 
 
 @Service
@@ -39,6 +41,29 @@ public class AuthServiceImpl implements AuthService {
             }
         }
         return false;
+    }
+
+    @Override
+    public Map<String, Object> login(String username, String password) {
+        User user = userMapper.getUserByEmail(username);
+        if (user != null) {
+            try {
+                if (EncryptUtil.getMD5(password).equals(user.getPassword())) {
+                    Map<String, Object> jsonObject = new HashMap<>();
+                    jsonObject.put("id", user.getId());
+                    jsonObject.put("username", user.getEmail());
+                    jsonObject.put("password", user.getPassword());
+                    jsonObject.put("roleId", user.getRoleId());
+                    jsonObject.put("timestamp", System.currentTimeMillis() / 1000);
+                    EncryptUtil encryptUtil = new EncryptUtil("token");
+                    jsonObject.put("token", encryptUtil.encrypt(jsonObject.toString()));
+                    return jsonObject;
+                }
+            } catch (Exception e) {
+                //
+            }
+        }
+        return null;
     }
 
     @Override

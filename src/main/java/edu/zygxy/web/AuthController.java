@@ -3,6 +3,7 @@ package edu.zygxy.web;
 import edu.zygxy.pojo.JsonResponse;
 import edu.zygxy.pojo.User;
 import edu.zygxy.service.AuthService;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Map;
 
 
 @Controller
@@ -23,6 +25,16 @@ public class AuthController {
     @RequestMapping("/login")
     public String loginPage() {
         return "login";
+    }
+
+    @RequestMapping(value = "/api/login/app", method = RequestMethod.POST, produces = "application/json")
+    @ResponseBody
+    public JsonResponse login(@RequestBody User user) {
+        Map<String, Object> login = authService.login(user.getEmail(), user.getPassword());
+        if (login == null) {
+            return new JsonResponse(400, "用户名或密码错误");
+        }
+        return new JsonResponse(login);
     }
 
     @RequestMapping(value = "/api/login", method = RequestMethod.POST, produces = "application/json")
