@@ -21,6 +21,7 @@ public class ScheduleController {
     @Autowired
     private ScheduleService scheduleService;
 
+    @Role({"1", "2", "3", "4"})
     @GetMapping("/api/schedules/leave/{userId}")
     @ResponseBody
     public List<Schedule> getLeaveByUserId(@PathVariable Long userId) {

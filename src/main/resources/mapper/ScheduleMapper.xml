@@ -23,6 +23,10 @@
         SELECT * FROM schedule WHERE type=#{type} ORDER BY create_time DESC ;
     </select>
 
+    <select id="listButUserId" resultType="edu.zygxy.pojo.Schedule">
+         SELECT * FROM schedule WHERE type = 0 AND user_id != #{userId} ORDER BY create_time DESC ;
+    </select>
+
     <update id="updateScheduleStatus">
         UPDATE schedule SET status=#{status} WHERE id=#{id}
     </update>

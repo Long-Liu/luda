@@ -1,19 +1,24 @@
 package edu.zygxy.service.impl;
 
+import edu.zygxy.dao.RoleMapper;
 import edu.zygxy.dao.ScheduleMapper;
+import edu.zygxy.pojo.Role;
 import edu.zygxy.pojo.Schedule;
 import edu.zygxy.service.ScheduleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 
 @Service
 public class ScheduleServiceImpl implements ScheduleService {
 
-    @Autowired
+    @Resource
     private ScheduleMapper scheduleMapper;
+    @Resource
+    private RoleMapper roleMapper;
 
     @Override
     public void insertLeave(Schedule schedule) {
@@ -38,7 +43,12 @@ public class ScheduleServiceImpl implements ScheduleService {
 
     @Override
     public List<Schedule> listLeaves(long userId) {
-        return scheduleMapper.listSchedulesByUserIdAndType(userId, 0);
+        List<Schedule> schedules = scheduleMapper.listSchedulesByUserIdAndType(userId, 0);
+        Role r = roleMapper.getRoleById(userId);
+        if (!"员工".equals(r.getName())) {
+            schedules.addAll(scheduleMapper.listButUserId(userId));
+        }
+        return schedules;
     }
 
     @Override

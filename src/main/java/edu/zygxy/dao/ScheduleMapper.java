@@ -4,6 +4,7 @@ import edu.zygxy.pojo.Schedule;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.Collection;
 import java.util.List;
 
 
@@ -19,4 +20,6 @@ public interface ScheduleMapper {
     int deleteSchedule(long id);
 
     int updateScheduleStatus(@Param("id") long id, @Param("status") int status);
+
+    List<Schedule> listButUserId(@Param("userId") long userId);
 }
