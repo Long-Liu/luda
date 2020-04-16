@@ -16,7 +16,7 @@
     </insert>
 
     <select id="listSchedulesByUserIdAndType" resultType="edu.zygxy.pojo.Schedule">
-        SELECT * FROM schedule WHERE user_id=#{userId} AND type=#{type} ORDER BY create_time DESC ;
+        SELECT s.*, u.email FROM schedule s LEFT JOIN user u ON u.id = s.user_id WHERE s.user_id=#{userId} AND s.type=#{type} ORDER BY s.create_time DESC ;
     </select>
 
     <select id="listShcedulesByType" resultType="edu.zygxy.pojo.Schedule">
@@ -24,7 +24,7 @@
     </select>
 
     <select id="listButUserId" resultType="edu.zygxy.pojo.Schedule">
-         SELECT * FROM schedule WHERE type = 0 AND user_id != #{userId} ORDER BY create_time DESC ;
+         SELECT s.*, u.email FROM schedule s LEFT JOIN user u ON s.user_id = u.id  WHERE s.type = 0 AND s.user_id != #{userId} ORDER BY s.create_time DESC ;
     </select>
 
     <update id="updateScheduleStatus">
