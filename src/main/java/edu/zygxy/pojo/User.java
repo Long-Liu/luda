@@ -10,8 +10,8 @@ public class User {
     private String password;
     private String name;
     private Long phone;
-    private Long departmentId;
-    private Long roleId;
+    private Long departmentId = 2L;
+    private Long roleId = 4L;
     private Timestamp createTime;
     private Timestamp updateTime;
 

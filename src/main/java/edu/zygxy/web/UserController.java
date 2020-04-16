@@ -108,6 +108,12 @@ public class UserController {
         return "employee_update";
     }
 
+    @PostMapping("/api/app/user")
+    public JsonResponse register(@RequestBody User user) throws Exception {
+        userService.insertUser(user);
+        return new JsonResponse(null);
+    }
+
     @edu.zygxy.permission.Role({"1", "2", "3"})
     @RequestMapping(value = "/api/users", method = RequestMethod.POST, produces = "application/json")
     @ResponseBody
