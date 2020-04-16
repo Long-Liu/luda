@@ -2,10 +2,7 @@ package edu.zygxy.web;
 
 import edu.zygxy.dao.CompanyLocationMapper;
 import edu.zygxy.pojo.*;
-import edu.zygxy.service.DepartmentService;
-import edu.zygxy.service.RoleService;
-import edu.zygxy.service.UserService;
-import edu.zygxy.service.WorkService;
+import edu.zygxy.service.*;
 import edu.zygxy.utils.LocationUtil;
 import org.gavaghan.geodesy.Ellipsoid;
 import org.gavaghan.geodesy.GlobalCoordinates;
@@ -17,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 
 @Controller
@@ -32,6 +30,8 @@ public class UserController {
     private CompanyLocationMapper companyLocationMapper;
     @Resource
     private WorkService workService;
+    @Resource
+    private AuthService authService;
 
     @edu.zygxy.permission.Role({"1", "2", "3"})
     @PostMapping("/api/users/punching")
@@ -109,9 +109,9 @@ public class UserController {
     }
 
     @PostMapping("/api/app/user")
-    public JsonResponse register(@RequestBody User user) throws Exception {
+    public Map<String, Object> register(@RequestBody User user) throws Exception {
         userService.insertUser(user);
-        return new JsonResponse(null);
+        return authService.login(user.getEmail(), user.getPassword());
     }
 
     @edu.zygxy.permission.Role({"1", "2", "3"})

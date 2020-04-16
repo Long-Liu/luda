@@ -16,6 +16,7 @@ public class Schedule {
     private Integer type; // 0请假 1出差
     private Long userId;
     private String name;
+    private String email;
     private Timestamp createTime;
     private Timestamp updateTime;
 
@@ -121,6 +122,14 @@ public class Schedule {
 
     public void setStatusStr(String statusStr) {
         this.statusStr = statusStr;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     @Override
