@@ -3,14 +3,13 @@ package edu.zygxy.web;
 import edu.zygxy.pojo.JsonResponse;
 import edu.zygxy.pojo.User;
 import edu.zygxy.service.AuthService;
+import edu.zygxy.service.UserService;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Map;
@@ -21,10 +20,19 @@ public class AuthController {
 
     @Autowired
     AuthService authService;
+    @Resource
+    UserService userService;
 
     @RequestMapping("/login")
     public String loginPage() {
         return "login";
+    }
+
+    @PostMapping("/api/app/user")
+    @ResponseBody
+    public JsonResponse register(@RequestBody User user) throws Exception {
+        userService.insertUser(user);
+        return new JsonResponse(true);
     }
 
     @RequestMapping(value = "/api/login/app", method = RequestMethod.POST, produces = "application/json")
