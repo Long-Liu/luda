@@ -3,16 +3,20 @@ package edu.zygxy.web;
 import edu.zygxy.permission.Role;
 import edu.zygxy.pojo.JsonResponse;
 import edu.zygxy.pojo.Schedule;
+import edu.zygxy.pojo.ScheduleVO;
 import edu.zygxy.pojo.UserVO;
 import edu.zygxy.service.ScheduleService;
 import edu.zygxy.utils.DateUtil;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Controller
@@ -24,8 +28,17 @@ public class ScheduleController {
     @Role({"1", "2", "3", "4"})
     @GetMapping("/api/schedules/leave/{userId}")
     @ResponseBody
-    public List<Schedule> getLeaveByUserId(@PathVariable Long userId) {
-        return scheduleService.listLeaves(userId);
+    public List<ScheduleVO> getLeaveByUserId(@PathVariable Long userId) {
+        List<Schedule> os = scheduleService.listLeaves(userId);
+        return os.stream().map(o -> {
+            ScheduleVO x = new ScheduleVO();
+            BeanUtils.copyProperties(o, x, "start", "end", "createTime", "updateTime");
+            x.setCreateTime(DateUtil.dateToString(new Date(o.getCreateTime().getTime())));
+            x.setUpdateTime(DateUtil.dateToString(new Date(o.getUpdateTime().getTime())));
+            x.setEnd(DateUtil.dateToString(new Date(o.getEnd().getTime())));
+            x.setStart(DateUtil.dateToString(new Date(o.getStart().getTime())));
+            return x;
+        }).collect(Collectors.toList());
     }
 
     @Role({"1", "2", "3", "4"})
