@@ -33,7 +33,7 @@ public class UserController {
     @Resource
     private AuthService authService;
 
-    @edu.zygxy.permission.Role({"1", "2", "3"})
+    @edu.zygxy.permission.Role({"1", "2", "3", "4"})
     @PostMapping("/api/users/punching")
     @ResponseBody
     public JsonResponse punching(@RequestBody PunchingBO o) {
