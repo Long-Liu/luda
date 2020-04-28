@@ -42,7 +42,7 @@ public class UserController {
         for (CompanyLocation cl : cls) {
             double d = LocationUtil.getDistanceMeter(source, new GlobalCoordinates(cl.getLatitude(),
                     cl.getLongitude()), Ellipsoid.Sphere);
-            if (d <= 1000.D) {
+            if (d <= 1000000.D) {
                 Integer type = o.getType();
                 /*打卡上班*/
                 if (type == 1) {
