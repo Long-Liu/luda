@@ -16,6 +16,15 @@ public class ScheduleVO {
     private String email;
     private String createTime;
     private String updateTime;
+    private String username;
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
     public Long getId() {
         return id;

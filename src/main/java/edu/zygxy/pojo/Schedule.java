@@ -19,6 +19,15 @@ public class Schedule {
     private String email;
     private Timestamp createTime;
     private Timestamp updateTime;
+    private String username;
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
     public Long getId() {
         return id;

@@ -37,6 +37,9 @@ public class ScheduleController {
             x.setUpdateTime(DateUtil.dateToString(new Date(o.getUpdateTime().getTime())));
             x.setEnd(DateUtil.dateToString(new Date(o.getEnd().getTime())));
             x.setStart(DateUtil.dateToString(new Date(o.getStart().getTime())));
+            x.setName(o.getName());
+            x.setEmail(o.getEmail());
+            x.setUsername(o.getUsername());
             return x;
         }).collect(Collectors.toList());
     }
