@@ -55,6 +55,8 @@ public class AuthServiceImpl implements AuthService {
                     jsonObject.put("id", user.getId());
                     jsonObject.put("username", user.getEmail());
                     jsonObject.put("password", user.getPassword());
+                    jsonObject.put("phone", user.getPassword());
+                    jsonObject.put("name", user.getName());
                     jsonObject.put("roleId", user.getRoleId());
                     jsonObject.put("timestamp", System.currentTimeMillis() / 1000);
                     EncryptUtil encryptUtil = new EncryptUtil("token");
