@@ -8,4 +8,5 @@ public class PunchingBO {
     private Double lat;
     private Double lng;
     private Integer type;
+    private String address;
 }

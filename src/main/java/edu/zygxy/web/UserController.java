@@ -46,10 +46,10 @@ public class UserController {
                 Integer type = o.getType();
                 /*打卡上班*/
                 if (type == 1) {
-                    workService.startWork(o.getUserId());
+                    workService.startWork(o.getUserId(), o.getAddress());
                 } else {
                     /*打卡下班*/
-                    workService.offWork(o.getUserId());
+                    workService.offWork(o.getUserId(), o.getAddress());
                 }
                 return new JsonResponse(200, o.getType() == 1 ? "打卡下班成功" : "打卡上班成功");
             }

@@ -23,6 +23,15 @@ public class WorkCheck {
     private Timestamp createTime;
     private Timestamp updateTime;
     private String name;
+    private String address;
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
 
     public String getName() {
         return name;

@@ -14,13 +14,15 @@
         user_id=#{userId},
         work_time=0,
         create_time=now(),
-        update_time=now()
+        update_time=now(),
+        address = #{address}
     </insert>
 
     <update id="updateWorkCheckEndCheck">
         UPDATE work_check SET
         `end_check`=now(),
-        work_time=#{workTime}
+        work_time=#{workTime},
+        address = #{address}
         WHERE
         user_id=#{userId}
         AND
@@ -30,6 +32,7 @@
     <update id="updateWorkCheckStartCheck" parameterType="java.lang.Long">
         UPDATE work_check SET
         `start_check`=now(),
+        address = #{address}
         WHERE
         user_id=#{userId}
         AND

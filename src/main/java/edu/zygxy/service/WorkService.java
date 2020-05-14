@@ -23,11 +23,11 @@ public interface WorkService {
 
     boolean insertWorkCheck(WorkCheck workCheck);
 
-    boolean offWork(long userId);
+    boolean offWork(long userId, String address);
 
     List<WorkCheck> listWorkChecksByUserId(long userId);
 
     List<WorkCheck> listWorkChecks();
 
-    void startWork(long userId);
+    void startWork(long userId, String address);
 }

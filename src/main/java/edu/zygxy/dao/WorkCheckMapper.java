@@ -12,7 +12,7 @@ public interface WorkCheckMapper {
 
     int insertWorkCheck(WorkCheck workCheck);
 
-    int updateWorkCheckEndCheck(@Param("userId") long userId, @Param("workTime") double workTime);
+    int updateWorkCheckEndCheck(@Param("userId") long userId, @Param("workTime") double workTime, @Param("address") String address);
 
     List<WorkCheck> listWorkChecksByUserId(long userId);
 
@@ -20,5 +20,5 @@ public interface WorkCheckMapper {
 
     WorkCheck getWorkCheckByUserIdAndTime(long userId);
 
-    void updateWorkCheckStartCheck(long userId);
+    void updateWorkCheckStartCheck(@Param("userId") long userId, @Param("address") String address);
 }

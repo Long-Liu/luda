@@ -13,11 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.Time;
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
-import java.time.Instant;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 
@@ -97,15 +92,15 @@ public class WorkServiceImpl implements WorkService {
     }
 
     @Override
-    public boolean offWork(long userId) {
+    public boolean offWork(long userId, String address) {
         WorkCheck workCheck1 = workCheckMapper.getWorkCheckByUserIdAndTime(userId);
         if (workCheck1 != null) {
-            workCheckMapper.updateWorkCheckEndCheck(userId, 0);
+            workCheckMapper.updateWorkCheckEndCheck(userId, 0, address);
             WorkCheck workCheck2 = workCheckMapper.getWorkCheckByUserIdAndTime(userId);
             Time start = workCheck2.getStartCheck();
             Time end = workCheck2.getEndCheck();
             double workTime = ((double) (end.getTime() - start.getTime())) / 3600000;
-            workCheckMapper.updateWorkCheckEndCheck(userId, workTime);
+            workCheckMapper.updateWorkCheckEndCheck(userId, workTime, address);
             return true;
         }
         return false;
@@ -122,7 +117,7 @@ public class WorkServiceImpl implements WorkService {
     }
 
     @Override
-    public void startWork(long userId) {
+    public void startWork(long userId, String address) {
         WorkCheck workCheck = workCheckMapper.getWorkCheckByUserIdAndTime(userId);
         /*fist time*/
         if (workCheck == null) {
@@ -131,10 +126,11 @@ public class WorkServiceImpl implements WorkService {
             fw.setEnd(new Time(System.currentTimeMillis()));
             fw.setType(1);
             fw.setUserId(userId);
+            fw.setAddress(address);
             workCheckMapper.insertWorkCheck(fw);
         } else {
             /*more than once update start time*/
-            workCheckMapper.updateWorkCheckStartCheck(userId);
+            workCheckMapper.updateWorkCheckStartCheck(userId, address);
         }
     }
 }

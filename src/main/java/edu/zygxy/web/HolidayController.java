@@ -88,7 +88,7 @@ public class HolidayController {
     public JsonResponse endWork(HttpServletRequest request) {
         UserVO userVO = (UserVO) request.getAttribute("userInfo");
         if (userVO != null) {
-            if (workService.offWork(userVO.getId())) {
+            if (workService.offWork(userVO.getId(), o.getAddress())) {
                 return new JsonResponse(null);
             }
         }
